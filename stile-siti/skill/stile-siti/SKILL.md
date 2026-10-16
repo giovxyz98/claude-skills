@@ -52,7 +52,7 @@ Se Giovanni porta una pagina già fatta (un suo file con logica, dati e chiamate
 - **Animata e viva**: entrate in scena, effetti legati allo scroll, risposte all'hover e al tocco, sfondi che respirano. Usa il catalogo di `references/motion.md` per intero e combina più effetti: il solo fade-in ripetuto rende le pagine una copia dell'altra. Il limite è la fluidità sul telefono, non la prudenza.
 - **Librerie JS leggere** (GSAP, Lenis) quasi sempre, con criterio: ognuna deve guadagnarsi il posto, mai due che fanno la stessa cosa, solo i moduli usati, versione **fissa** nell'indirizzo CDN. Se in CSS viene bene, si fa in CSS. Niente 3D, niente WebGL, niente librerie pesanti.
 - **Librerie e font da internet** per default. Versione offline (tutto incorporato) solo su richiesta, con `scripts/offline.mjs`.
-- **Immagini:** forme SVG decorative semplici, icone SVG incorporate (solo quelle usate), effetti in CSS. Niente illustrazioni SVG complesse. Foto o segnaposto di foto solo se il tema lo chiede o su richiesta.
+- **Immagini e SVG:** mai disegnati a mano. Icone e figure si cercano già fatte con `scripts/icone.mjs` e si incorporano (solo quelle usate, un solo set per pagina). A mano solo forme geometriche semplici, max 300 caratteri l'una; per il resto effetti in CSS. Foto o segnaposto di foto solo se il tema lo chiede o su richiesta.
 - **Chiaro o scuro** lo decide il concept. Doppio tema solo su richiesta.
 - **Nessun commento nel codice** salvo richiesta, e non rimuovere quelli già presenti nel codice che Giovanni fornisce.
 - **Accessibilità di base:** `prefers-reduced-motion` rispettato, focus visibile, contrasto sufficiente, `alt` e `aria-label` dove servono.
@@ -69,6 +69,7 @@ Richiedono Node 20 o superiore. Se mancano le dipendenze, gli script le installa
 | `node scripts/verifica.mjs pagina.html [--out cartella] [--solo 390]` | Screenshot a 360, 390, 430, tablet e desktop con emulazione touch, controlli automatici, elenco sintetico dei problemi. `--solo` limita a una o più viste (es. `390,desktop`) |
 | `node scripts/offline.mjs pagina.html pagina-offline.html` | Incorpora librerie e font (solo su richiesta di Giovanni) |
 | `node scripts/palette.mjs "#colore" [--sfondo "#colore"]` | Scala di tinte dal colore base e controllo dei contrasti |
+| `node scripts/icone.mjs cerca <parola> [set]` / `dai <set:nome>` | Cerca e scarica SVG già fatti (Iconify); non disegnare SVG a mano |
 
 Il blocco `<style type="text/tailwindcss">` del sorgente contiene `@theme { ... }` per le variabili del concept e il CSS personalizzato: lo script antepone `@import "tailwindcss";` da solo.
 

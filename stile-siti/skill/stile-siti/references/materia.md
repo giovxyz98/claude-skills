@@ -47,7 +47,9 @@ Sul telefono usa il blur con parsimonia (pochi pannelli, raggio 10–16 px) e pr
 
 ## Forme SVG semplici
 
-Onde, blob, linee, cerchi, pattern, cornici geometriche. Poche decine di righe per forma, mai illustrazioni elaborate (consumano molti token).
+**Regola: gli SVG non si disegnano a mano, si cercano già fatti** con `node scripts/icone.mjs cerca <parola> [set]` e `dai <set:nome>` (Iconify: lucide, tabler, ph per le icone; game-icons, noto, fluent-emoji-flat per figure e oggetti). Disegnare a mano costa molti token e viene peggio.
+
+Eccezione: forme geometriche semplici (onde, blob, linee, cerchi, pattern, cornici), **massimo 300 caratteri per SVG**. Se non ci stai dentro, cerca una libreria o usa CSS (gradienti, `clip-path`, `mask`).
 
 ```html
 <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
@@ -55,7 +57,7 @@ Onde, blob, linee, cerchi, pattern, cornici geometriche. Poche decine di righe p
 </svg>
 ```
 
-Per le icone: SVG incorporati, solo quelle usate, `stroke="currentColor"`, tratto coerente su tutta la pagina.
+Per le icone: prese da `icone.mjs` e incorporate, solo quelle usate, `currentColor`, un solo set per pagina così il tratto è coerente.
 
 ## Materiali per concept
 

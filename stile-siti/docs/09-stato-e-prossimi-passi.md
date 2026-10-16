@@ -4,6 +4,8 @@ Documento di passaggio di consegne, aggiornato al 16/10/2026. Chi riprende il la
 
 ## Dove siamo
 
+(Nota: la cartella `workspace/` con le pagine delle iterazioni è stata rimossa dal repository il 16/10/2026; restano nella cronologia git.)
+
 La skill è scritta, gli script funzionano, i test di attivazione sono superati e la qualità delle pagine è ora soddisfacente per Giovanni (iterazioni 2 e 3, 16/10/2026): **la skill è quasi pronta**. Restano revisione finale, verifiche visive con screenshot (sospese per i token), ottimizzazione della descrizione (opzionale) e caricamento. **Non preparare lo zip finché Giovanni non lo chiede.** Per ora **non fare screenshot né controllarli** (consumano molti token), salvo richiesta; generare gli HTML invece va bene.
 
 ## Cosa c'è
@@ -12,7 +14,7 @@ La skill è scritta, gli script funzionano, i test di attivazione sono superati 
 - `SKILL.md`: descrizione "solo se richiamata per nome", barriera lavoro, metodo in 7 passi, regole sempre valide, script, indice dei riferimenti. Il frontmatter contiene anche `disable-model-invocation: true` (vedi sotto).
 - `references/`: gusto, direzioni, tipografia, colore, layout, mobile, motion, materia, componenti, css-moderno, anti-generico.
 - `assets/base.html`: scheletro con titolo, favicon, theme-color, meta di anteprima, viewport con safe area, font, blocco Tailwind (`<style type="text/tailwindcss">`), reveal con IntersectionObserver, reduced-motion.
-- `scripts/`: `build.mjs`, `verifica.mjs`, `offline.mjs`, `palette.mjs`, `lib.mjs`. Scaricano da soli le dipendenze in `~/.cache/stile-siti`.
+- `scripts/`: `build.mjs`, `verifica.mjs`, `offline.mjs`, `palette.mjs`, `icone.mjs`, `lib.mjs`. Scaricano da soli le dipendenze in `~/.cache/stile-siti`. `icone.mjs` (16/10/2026) cerca SVG già fatti su Iconify: per decisione di Giovanni gli SVG non si disegnano a mano (a mano solo forme semplici, max 300 caratteri); non ancora provato su una pagina nuova.
 - `evals/evals.json`: le quattro richieste di prova.
 
 `workspace/iteration-1/`: per ciascuno dei quattro casi (dieta, viaggio Madrid, landing cinema/teatri, indice GitHub) la pagina con la nuova skill (`with_skill/outputs/pagina.html`) e con la vecchia (`old_skill/outputs/pagina.html`). `revisione.html` è il confronto generato da skill-creator.
