@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La settimana a tavola</title>
+<meta name="description" content="Il diario della dieta settimanale: pasti, acqua e peso, giorno per giorno, su piastrelle di maiolica.">
+<meta name="theme-color" content="#f3e3c6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La settimana a tavola">
+<meta property="og:description" content="Il diario della dieta settimanale: pasti, acqua e peso, giorno per giorno.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='18' fill='%23d9531e'/%3E%3Ccircle cx='50' cy='50' r='24' fill='%23f6ead6'/%3E%3Ccircle cx='50' cy='50' r='11' fill='%233f6b3a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme {
+  --color-fondo: #f3e3c6;
+  --color-crema: #fbf3e2;
+  --color-inchiostro: #2e1c12;
+  --color-tenue: #6b4a37;
+  --color-marca-500: #d9531e;
+  --color-marca-600: #bf420a;
+  --color-marca-700: #913107;
+  --color-foglia: #3f6b3a;
+  --color-foglia-scura: #2a4a29;
+  --color-accento: #bf420a;
+  --font-titolo: "Fraunces", serif;
+  --font-testo: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+  --radius-card: 1.25rem;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  color: var(--color-inchiostro);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(60% 40% at 8% 0%, rgb(255 255 255 / .55), transparent 65%),
+    radial-gradient(50% 40% at 100% 18%, rgb(217 83 30 / .14), transparent 65%),
+    radial-gradient(60% 40% at 0% 78%, rgb(63 107 58 / .14), transparent 65%),
+    var(--color-fondo);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .5;
+  background-image:
+    linear-gradient(rgb(46 28 18 / .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(46 28 18 / .05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(80% 60% at 50% 30%, #000, transparent);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: .07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+h1, h2, h3 {
+  font-family: var(--font-titolo);
+  text-wrap: balance;
+  line-height: 1;
+}
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accento);
+  outline-offset: 3px;
+}
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.smalto {
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgb(255 255 255 / .75), transparent 55%),
+    var(--color-crema);
+  border: 1px solid rgb(46 28 18 / .12);
+  border-radius: var(--radius-card);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / .9) inset,
+    0 -6px 14px -8px rgb(46 28 18 / .18) inset,
+    0 2px 3px rgb(46 28 18 / .12),
+    0 22px 40px -22px rgb(145 49 7 / .45);
+}
+
+.piastrella {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: 5.25rem;
+  padding: .55rem .6rem .5rem;
+  border-radius: 1rem;
+  text-align: left;
+  color: var(--color-inchiostro);
+  touch-action: manipulation;
+  cursor: pointer;
+  overflow: hidden;
+  background:
+    radial-gradient(110% 80% at 25% 0%, rgb(255 255 255 / .8), transparent 55%),
+    var(--color-crema);
+  border: 1px solid rgb(46 28 18 / .14);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / .9) inset,
+    0 -8px 14px -8px rgb(46 28 18 / .22) inset,
+    0 2px 2px rgb(46 28 18 / .15),
+    0 14px 22px -14px rgb(145 49 7 / .5);
+  transition: transform .3s var(--ease-uscita), box-shadow .3s var(--ease-uscita);
+}
+
+.piastrella::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: calc(var(--p, 0) * 100%);
+  background:
+    radial-gradient(90% 70% at 30% 0%, rgb(255 255 255 / .35), transparent 60%),
+    linear-gradient(180deg, var(--color-foglia), var(--color-foglia-scura));
+  transition: height .8s var(--ease-uscita);
+  z-index: 0;
+}
+
+.piastrella > * { position: relative; z-index: 1; }
+.piastrella .sigla { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+.piastrella .num { font-family: var(--font-titolo); font-weight: 900; font-size: 1.7rem; line-height: 1; }
+.piastrella .conta { font-family: var(--font-mono); font-size: .7rem; }
+.piastrella.pieno { color: #fbf3e2; }
+.piastrella.oggi { outline: 2px dashed var(--color-marca-600); outline-offset: 3px; }
+.piastrella[aria-pressed="true"] {
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / .9) inset,
+    0 -8px 14px -8px rgb(46 28 18 / .22) inset,
+    0 3px 3px rgb(46 28 18 / .15),
+    0 0 0 3px var(--color-marca-600),
+    0 24px 30px -14px rgb(145 49 7 / .6);
+}
+.piastrella:active { transform: scale(.96); }
+@media (hover: hover) and (pointer: fine) {
+  .piastrella:hover { transform: translateY(-3px); }
+}
+
+.pasto {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: .25rem .75rem;
+  align-items: center;
+  padding: .85rem .9rem;
+  transition: transform .3s var(--ease-uscita), opacity .3s;
+}
+
+.spunta {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: transparent;
+  background: radial-gradient(100% 100% at 30% 20%, #fff, #efdcb8);
+  border: 1px solid rgb(46 28 18 / .2);
+  box-shadow: 0 -4px 8px -4px rgb(46 28 18 / .25) inset, 0 3px 6px -2px rgb(46 28 18 / .3);
+  transition: transform .25s var(--ease-uscita), background .3s;
+}
+.spunta:active { transform: scale(.9); }
+.spunta svg { width: 1.5rem; height: 1.5rem; }
+.spunta path { stroke-dasharray: 24; stroke-dashoffset: 24; transition: stroke-dashoffset .5s var(--ease-uscita); }
+.spunta[aria-pressed="true"] {
+  background: radial-gradient(100% 100% at 30% 20%, #5f9a58, var(--color-foglia));
+  border-color: var(--color-foglia-scura);
+  color: #fbf3e2;
+}
+.spunta[aria-pressed="true"] path { stroke-dashoffset: 0; }
+
+.campo {
+  width: 100%;
+  min-height: 2.75rem;
+  font: inherit;
+  font-size: 1rem;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed rgb(46 28 18 / .3);
+  border-radius: 0;
+  padding: .25rem 0;
+}
+.campo:focus-visible { outline: 2px solid var(--color-accento); outline-offset: 2px; border-bottom-color: transparent; }
+.campo::placeholder { color: var(--color-tenue); opacity: .8; }
+.pasto.fatto .campo { text-decoration: line-through; text-decoration-color: rgb(63 107 58 / .7); color: var(--color-tenue); }
+
+.goccia {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 3rem;
+  height: 3.1rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: rgb(46 28 18 / .28);
+  transition: transform .25s var(--ease-uscita), color .3s;
+}
+.goccia svg { width: 100%; height: 100%; }
+.goccia[aria-pressed="true"] { color: #2f6f8f; filter: drop-shadow(0 4px 6px rgb(47 111 143 / .45)); }
+.goccia:active { transform: scale(.88); }
+
+.btn {
+  min-height: 44px;
+  padding: .6rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  touch-action: manipulation;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(180deg, var(--color-marca-500), var(--color-marca-600));
+  box-shadow: 0 1px 0 rgb(255 255 255 / .35) inset, 0 10px 18px -8px rgb(145 49 7 / .7);
+  transition: transform .25s var(--ease-uscita), box-shadow .25s var(--ease-uscita);
+}
+.btn:active { transform: scale(.97); }
+.btn.lieve {
+  color: var(--color-inchiostro);
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid rgb(46 28 18 / .3);
+}
+@media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-2px); } }
+
+.num-grande {
+  font-family: var(--font-titolo);
+  font-weight: 900;
+  font-variation-settings: "opsz" 144;
+  line-height: .8;
+  letter-spacing: -.03em;
+}
+
+.anello { transform: rotate(-90deg); }
+.anello circle { transition: stroke-dashoffset 1s var(--ease-uscita); }
+
+.respiro { animation: respiro 16s ease-in-out infinite alternate; }
+@keyframes respiro {
+  from { translate: 0 0; scale: 1; }
+  to { translate: 3% 4%; scale: 1.08; }
+}
+
+.entra { opacity: 0; translate: 0 1.5rem; animation: entra .85s var(--ease-uscita) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes entra { to { opacity: 1; translate: 0 0; } }
+
+.cambia { animation: cambia .5s var(--ease-uscita) backwards; }
+@keyframes cambia { from { opacity: 0; translate: 0 .8rem; } }
+
+.striscia { scrollbar-width: none; }
+.striscia::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .entra { opacity: 1; translate: 0 0; animation: none; }
+  .respiro { animation: none; }
+}
+</style>
+</head>
+<body>
+<a href="#giorno" class="absolute left-3 top-3 z-[70] -translate-y-20 rounded-full bg-inchiostro px-4 py-2 text-crema focus:translate-y-0">Vai al giorno</a>
+
+<header class="relative overflow-hidden px-5 pt-10 pb-6 md:px-12 md:pt-16">
+  <div class="respiro pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-marca-500/25 blur-3xl" aria-hidden="true"></div>
+  <div class="mx-auto flex max-w-6xl flex-col gap-1">
+    <p class="entra mono text-sm text-tenue" style="--i:0" id="data-oggi">~/dieta/settimana</p>
+    <h1 class="entra text-[clamp(2.9rem,12vw,7.5rem)] font-black tracking-tight" style="--i:1">La settimana<br><span class="text-marca-600">a tavola</span></h1>
+    <p class="entra mt-3 max-w-md text-tenue" style="--i:2">Quattro pasti al giorno, otto bicchieri d'acqua. Tocca il cerchio quando hai mangiato quello che avevi previsto.</p>
+  </div>
+</header>
+
+<main class="mx-auto grid max-w-6xl gap-6 px-5 pb-28 md:px-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:items-start lg:gap-10">
+
+  <section aria-labelledby="t-sett" class="entra lg:sticky lg:top-6" style="--i:3">
+    <div class="smalto p-5 md:p-6">
+      <div class="flex items-center gap-5">
+        <div class="relative h-32 w-32 shrink-0">
+          <svg class="anello h-full w-full" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="rgb(46 28 18 / .12)" stroke-width="12"/>
+            <circle id="anello" cx="60" cy="60" r="52" fill="none" stroke="#3f6b3a" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+          </svg>
+          <p class="absolute inset-0 grid place-content-center text-center"><span id="perc" class="num-grande text-4xl">0%</span></p>
+        </div>
+        <div>
+          <h2 id="t-sett" class="mono text-xs uppercase tracking-widest text-tenue">Settimana</h2>
+          <p class="mt-1"><span id="tot-pasti" class="num-grande text-6xl">0</span><span class="mono text-lg text-tenue"> / 28</span></p>
+          <p class="text-sm text-tenue">pasti rispettati</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-4 gap-2.5 sm:grid-cols-7 lg:grid-cols-4" id="piastrelle" role="group" aria-label="Giorni della settimana"></div>
+
+      <dl class="mt-6 grid grid-cols-2 gap-3 text-sm">
+        <div class="rounded-2xl border border-inchiostro/10 bg-white/50 p-3">
+          <dt class="mono text-xs uppercase tracking-wider text-tenue">Acqua</dt>
+          <dd class="mt-1"><span id="tot-acqua" class="num-grande text-3xl">0</span><span class="mono text-tenue"> / 56</span></dd>
+        </div>
+        <div class="rounded-2xl border border-inchiostro/10 bg-white/50 p-3">
+          <dt class="mono text-xs uppercase tracking-wider text-tenue">Peso</dt>
+          <dd class="mt-1"><span id="delta-peso" class="num-grande text-3xl">-</span><span class="mono text-tenue"> kg</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="giorno" aria-labelledby="t-giorno" class="entra scroll-mt-4" style="--i:4" tabindex="-1">
+    <div class="mb-4 flex items-end justify-between gap-3">
+      <div>
+        <p class="mono text-xs uppercase tracking-widest text-tenue" id="sup-giorno">Oggi</p>
+        <h2 id="t-giorno" class="text-[clamp(2.2rem,8vw,4rem)] font-black">Venerdì</h2>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" class="btn lieve" id="prec" aria-label="Giorno precedente">&larr;</button>
+        <button type="button" class="btn lieve" id="succ" aria-label="Giorno successivo">&rarr;</button>
+      </div>
+    </div>
+
+    <div id="pasti" class="grid gap-3"></div>
+
+    <div class="smalto mt-5 p-5">
+      <div class="flex items-center justify-between">
+        <h3 class="text-2xl font-bold">Acqua</h3>
+        <p class="mono text-sm text-tenue"><span id="acqua-n">0</span> / 8 bicchieri</p>
+      </div>
+      <div class="mt-2 flex justify-between" id="gocce" role="group" aria-label="Bicchieri d'acqua"></div>
+    </div>
+
+    <div class="smalto mt-5 grid gap-4 p-5 sm:grid-cols-[12rem_1fr]">
+      <div>
+        <label for="peso" class="block text-2xl font-bold" style="font-family:var(--font-titolo)">Peso</label>
+        <div class="mt-2 flex items-baseline gap-2">
+          <input id="peso" class="campo mono text-center text-2xl" type="text" inputmode="decimal" autocomplete="off" placeholder="00,0" aria-describedby="peso-aiuto">
+          <span class="mono text-tenue">kg</span>
+        </div>
+        <p id="peso-aiuto" class="mt-1 text-sm text-tenue">Al mattino, a digiuno.</p>
+      </div>
+      <div>
+        <label for="nota" class="block text-2xl font-bold" style="font-family:var(--font-titolo)">Nota del giorno</label>
+        <textarea id="nota" rows="3" class="campo mt-2 resize-none" placeholder="Fame nervosa alle 17? Cena fuori? Scrivilo qui."></textarea>
+      </div>
+    </div>
+
+    <div class="mt-5 flex flex-wrap items-center gap-3">
+      <button type="button" class="btn" id="copia">Copia il piano su tutta la settimana</button>
+      <button type="button" class="btn lieve" id="azzera">Azzera le spunte</button>
+      <p id="stato" class="mono text-sm text-tenue" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="relative px-5 pb-10 text-center md:px-12">
+  <p class="mono text-xs text-tenue">Salvato sul tuo telefono, niente account. Ogni lunedì si riparte.</p>
+</footer>
+
+<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-inchiostro/15 bg-crema/90 px-3 pt-2 backdrop-blur-md md:hidden" style="padding-bottom: max(.5rem, env(safe-area-inset-bottom))" aria-label="Giorno rapido">
+  <div class="striscia flex gap-2 overflow-x-auto" id="barra"></div>
+</nav>
+
+<script>
+(function () {
+  var GIORNI = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+  var SIGLE = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'];
+  var SLOT = [
+    { n: 'Colazione', o: '07:30' },
+    { n: 'Pranzo', o: '13:00' },
+    { n: 'Merenda', o: '16:30' },
+    { n: 'Cena', o: '20:00' }
+  ];
+  var PIANO = [
+    ['Yogurt greco, mirtilli, 30 g di muesli', 'Pasta integrale al pomodoro, insalata', 'Una mela e 10 mandorle', 'Orata al forno, zucchine grigliate'],
+    ['Pane integrale, ricotta e miele', 'Riso con piselli e uovo sodo', 'Un frutto di stagione', 'Minestrone di verdure, crostino'],
+    ['Latte, fette biscottate e marmellata', 'Insalata di farro, ceci e cetrioli', 'Yogurt bianco', 'Petto di pollo, spinaci al limone'],
+    ["Porridge d'avena con banana", 'Pasta e fagioli', 'Due noci e un mandarino', 'Frittata di zucchine, pomodori'],
+    ['Cappuccino e una fetta di crostata', 'Gnocchi di patate al ragù di verdure', 'Una pera', 'Pizza margherita, da dividere'],
+    ['Uova strapazzate, pane tostato', 'Riso venere, gamberi e avocado', 'Frutta secca', 'Cena libera, con misura'],
+    ['Yogurt, kiwi e cereali', 'Pranzo in famiglia', 'Un frutto', 'Zuppa di lenticchie, pane integrale']
+  ];
+  var CHIAVE = 'dieta-settimana-v1';
+
+  function vuoto() {
+    var s = { piano: [], fatto: [], acqua: [0, 0, 0, 0, 0, 0, 0], peso: ['', '', '', '', '', '', ''], nota: ['', '', '', '', '', '', ''] };
+    for (var i = 0; i < 7; i++) { s.piano.push(PIANO[i].slice()); s.fatto.push([false, false, false, false]); }
+    return s;
+  }
+  function carica() {
+    try {
+      var r = localStorage.getItem(CHIAVE);
+      if (r) {
+        var s = JSON.parse(r);
+        if (s && s.piano && s.fatto && s.acqua) { s.peso = s.peso || vuoto().peso; s.nota = s.nota || vuoto().nota; return s; }
+      }
+    } catch (e) {}
+    return vuoto();
+  }
+  var stato = carica();
+  var timer;
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) {}
+    var el = document.getElementById('stato');
+    el.textContent = 'Salvato';
+    clearTimeout(timer);
+    timer = setTimeout(function () { el.textContent = ''; }, 1600);
+  }
+
+  var oggi = (new Date().getDay() + 6) % 7;
+  var sel = oggi;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var SVG_SPUNTA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  var SVG_GOCCIA = '<svg viewBox="0 0 32 40" fill="currentColor" aria-hidden="true"><path d="M16 2C16 2 4 16 4 25a12 12 0 0 0 24 0C28 16 16 2 16 2z"/></svg>';
+
+  function fatti(g) { return stato.fatto[g].filter(Boolean).length; }
+
+  function disegnaPiastrelle() {
+    var box = $('piastrelle'); box.innerHTML = '';
+    var bar = $('barra'); bar.innerHTML = '';
+    for (var g = 0; g < 7; g++) {
+      var n = fatti(g);
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'piastrella' + (n === 4 ? ' pieno' : '') + (g === oggi ? ' oggi' : '');
+      b.style.setProperty('--p', n / 4);
+      b.setAttribute('aria-pressed', g === sel ? 'true' : 'false');
+      b.setAttribute('aria-label', GIORNI[g] + ', ' + n + ' pasti su 4' + (g === oggi ? ', oggi' : ''));
+      b.dataset.g = g;
+      b.innerHTML = '<span class="sigla">' + SIGLE[g] + '</span><span class="num">' + n + '</span><span class="conta">su 4</span>';
+      box.appendChild(b);
+
+      var q = document.createElement('button');
+      q.type = 'button';
+      q.dataset.g = g;
+      q.setAttribute('aria-pressed', g === sel ? 'true' : 'false');
+      q.setAttribute('aria-label', GIORNI[g]);
+      q.className = 'mono min-h-11 min-w-[3.4rem] shrink-0 rounded-full border px-3 text-sm ' + (g === sel ? 'border-marca-700 bg-marca-600 text-white' : 'border-inchiostro/25 text-inchiostro');
+      q.textContent = SIGLE[g] + (g === oggi ? '*' : '');
+      bar.appendChild(q);
+    }
+  }
+
+  function disegnaTotali() {
+    var tot = 0, acq = 0, g;
+    for (g = 0; g < 7; g++) { tot += fatti(g); acq += stato.acqua[g]; }
+    $('tot-pasti').textContent = tot;
+    $('perc').textContent = Math.round(tot / 28 * 100) + '%';
+    $('anello').style.strokeDashoffset = 326.7 * (1 - tot / 28);
+    $('tot-acqua').textContent = acq;
+    var pesi = [];
+    for (g = 0; g < 7; g++) {
+      var v = parseFloat(String(stato.peso[g]).replace(',', '.'));
+      if (!isNaN(v)) pesi.push(v);
+    }
+    if (pesi.length >= 2) {
+      var d = pesi[pesi.length - 1] - pesi[0];
+      $('delta-peso').textContent = (d > 0 ? '+' : d < 0 ? '-' : '') + Math.abs(d).toFixed(1).replace('.', ',');
+    } else { $('delta-peso').textContent = '-'; }
+  }
+
+  function disegnaGiorno(anima) {
+    $('t-giorno').textContent = GIORNI[sel];
+    $('sup-giorno').textContent = sel === oggi ? 'Oggi' : sel < oggi ? 'Già passato' : 'In arrivo';
+    var box = $('pasti'); box.innerHTML = '';
+    SLOT.forEach(function (s, i) {
+      var on = stato.fatto[sel][i];
+      var r = document.createElement('div');
+      r.className = 'smalto pasto' + (on ? ' fatto' : '') + (anima ? ' cambia' : '');
+      r.style.animationDelay = (i * 70) + 'ms';
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'spunta'; b.dataset.i = i;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', s.n + ': ' + (on ? 'fatto' : 'da fare'));
+      b.innerHTML = SVG_SPUNTA;
+      var c = document.createElement('div');
+      var l = document.createElement('label');
+      l.className = 'mono block text-xs uppercase tracking-wider text-tenue';
+      l.setAttribute('for', 'pasto-' + i);
+      l.textContent = s.n + ' · ' + s.o;
+      var inp = document.createElement('input');
+      inp.className = 'campo'; inp.id = 'pasto-' + i; inp.type = 'text'; inp.autocomplete = 'off';
+      inp.placeholder = 'Cosa mangi?'; inp.value = stato.piano[sel][i]; inp.dataset.i = i;
+      c.appendChild(l); c.appendChild(inp);
+      r.appendChild(b); r.appendChild(c);
+      box.appendChild(r);
+    });
+    var g = $('gocce'); g.innerHTML = '';
+    for (var k = 0; k < 8; k++) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.className = 'goccia'; d.dataset.k = k;
+      d.setAttribute('aria-pressed', k < stato.acqua[sel] ? 'true' : 'false');
+      d.setAttribute('aria-label', 'Bicchiere ' + (k + 1));
+      d.innerHTML = SVG_GOCCIA;
+      g.appendChild(d);
+    }
+    $('acqua-n').textContent = stato.acqua[sel];
+    $('peso').value = stato.peso[sel];
+    $('nota').value = stato.nota[sel];
+  }
+
+  function tutto(anima) { disegnaPiastrelle(); disegnaTotali(); disegnaGiorno(anima); }
+
+  function vai(g, scroll) {
+    sel = (g + 7) % 7;
+    tutto(true);
+    if (scroll) $('giorno').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('piastrelle').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (b) vai(+b.dataset.g, window.innerWidth < 1024);
+  });
+  $('barra').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (b) vai(+b.dataset.g, false);
+  });
+  $('prec').addEventListener('click', function () { vai(sel - 1, false); });
+  $('succ').addEventListener('click', function () { vai(sel + 1, false); });
+
+  $('pasti').addEventListener('click', function (e) {
+    var b = e.target.closest('.spunta'); if (!b) return;
+    var i = +b.dataset.i;
+    stato.fatto[sel][i] = !stato.fatto[sel][i];
+    b.setAttribute('aria-pressed', stato.fatto[sel][i] ? 'true' : 'false');
+    b.setAttribute('aria-label', SLOT[i].n + ': ' + (stato.fatto[sel][i] ? 'fatto' : 'da fare'));
+    b.closest('.pasto').classList.toggle('fatto', stato.fatto[sel][i]);
+    disegnaPiastrelle(); disegnaTotali(); salva();
+  });
+  $('pasti').addEventListener('input', function (e) {
+    if (e.target.matches('.campo')) { stato.piano[sel][+e.target.dataset.i] = e.target.value; salva(); }
+  });
+  $('gocce').addEventListener('click', function (e) {
+    var d = e.target.closest('.goccia'); if (!d) return;
+    var k = +d.dataset.k + 1;
+    stato.acqua[sel] = stato.acqua[sel] === k ? k - 1 : k;
+    var all = $('gocce').children;
+    for (var j = 0; j < all.length; j++) all[j].setAttribute('aria-pressed', j < stato.acqua[sel] ? 'true' : 'false');
+    $('acqua-n').textContent = stato.acqua[sel];
+    disegnaTotali(); salva();
+  });
+  $('peso').addEventListener('input', function (e) { stato.peso[sel] = e.target.value; disegnaTotali(); salva(); });
+  $('nota').addEventListener('input', function (e) { stato.nota[sel] = e.target.value; salva(); });
+  $('copia').addEventListener('click', function () {
+    for (var g = 0; g < 7; g++) if (g !== sel) stato.piano[g] = stato.piano[sel].slice();
+    salva(); $('stato').textContent = 'Piano copiato su tutti i giorni';
+  });
+  $('azzera').addEventListener('click', function () {
+    stato.fatto = stato.fatto.map(function () { return [false, false, false, false]; });
+    stato.acqua = [0, 0, 0, 0, 0, 0, 0];
+    tutto(false); salva();
+  });
+
+  var d = new Date();
+  $('data-oggi').textContent = '~/dieta/settimana · ' + d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long' });
+  tutto(false);
+})();
+</script>
+</body>
+</html>

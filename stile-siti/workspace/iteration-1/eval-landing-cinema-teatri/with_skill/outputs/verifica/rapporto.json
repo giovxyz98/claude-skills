@@ -1,0 +1,89 @@
+{
+  "risultati": [
+    {
+      "dispositivo": "360",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.striscia.font-mono (bordo destro 4152px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 5028,
+      "animazioni": 4
+    },
+    {
+      "dispositivo": "animazioni",
+      "problemi": []
+    },
+    {
+      "dispositivo": "390",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.striscia.font-mono (bordo destro 4087px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 4892,
+      "animazioni": 4
+    },
+    {
+      "dispositivo": "430",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.striscia.font-mono (bordo destro 4217px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 4694,
+      "animazioni": 4
+    },
+    {
+      "dispositivo": "tablet",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.faretto.-z-10 (bordo destro 906px); div.striscia.font-mono (bordo destro 4286px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 4249,
+      "animazioni": 6
+    },
+    {
+      "dispositivo": "desktop",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.faretto.-z-10 (bordo destro 1461px); div.striscia.font-mono (bordo destro 4219px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 4575,
+      "animazioni": 6
+    }
+  ],
+  "meta": {
+    "mancanti": [],
+    "testoFinto": false
+  },
+  "console": [],
+  "rete": []
+}

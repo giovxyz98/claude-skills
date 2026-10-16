@@ -1,0 +1,89 @@
+{
+  "risultati": [
+    {
+      "dispositivo": "360",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.sole.-z-10 (bordo destro 384px); path (bordo destro 561px); g (bordo destro 438px); div.marquee.font-mono (bordo destro 2230px); div.pointer-events-none.absolute (bordo destro 456px); div.pointer-events-none.absolute (bordo destro 379px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 6377,
+      "animazioni": 5
+    },
+    {
+      "dispositivo": "animazioni",
+      "problemi": []
+    },
+    {
+      "dispositivo": "390",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.sole.-z-10 (bordo destro 415px); path (bordo destro 576px); g (bordo destro 452px); div.marquee.font-mono (bordo destro 2257px); div.pointer-events-none.absolute (bordo destro 486px); div.pointer-events-none.absolute (bordo destro 409px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 6034,
+      "animazioni": 5
+    },
+    {
+      "dispositivo": "430",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.sole.-z-10 (bordo destro 457px); path (bordo destro 595px); g (bordo destro 472px); div.marquee.font-mono (bordo destro 2302px); div.pointer-events-none.absolute (bordo destro 526px); div.pointer-events-none.absolute (bordo destro 449px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 5734,
+      "animazioni": 5
+    },
+    {
+      "dispositivo": "tablet",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.sole.-z-10 (bordo destro 872px); path (bordo destro 964px); div.marquee.font-mono (bordo destro 2312px); div.pointer-events-none.absolute (bordo destro 916px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 5524,
+      "animazioni": 5
+    },
+    {
+      "dispositivo": "desktop",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.sole.-z-10 (bordo destro 1530px); path (bordo destro 1633px); div.marquee.font-mono (bordo destro 2299px); div.pointer-events-none.absolute (bordo destro 1536px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 5219,
+      "animazioni": 5
+    }
+  ],
+  "meta": {
+    "mancanti": [],
+    "testoFinto": false
+  },
+  "console": [],
+  "rete": []
+}

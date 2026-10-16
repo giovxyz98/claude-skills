@@ -1,0 +1,85 @@
+{
+  "risultati": [
+    {
+      "dispositivo": "360",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.respiro.pointer-events-none (bordo destro 461px); button.mono.min-h-11 (bordo destro 384px); button.mono.min-h-11 (bordo destro 447px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "8: button.goccia 35x50; button.goccia 35x50; button.goccia 35x50; button.goccia 35x50; button.goccia 35x50; button.goccia 35x50"
+        }
+      ],
+      "altezza": 2025,
+      "animazioni": 6
+    },
+    {
+      "dispositivo": "animazioni",
+      "problemi": []
+    },
+    {
+      "dispositivo": "390",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.respiro.pointer-events-none (bordo destro 494px); button.mono.min-h-11 (bordo destro 447px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "8: button.goccia 39x50; button.goccia 39x50; button.goccia 39x50; button.goccia 39x50; button.goccia 39x50; button.goccia 39x50"
+        },
+        {
+          "tipo": "elementi-sovrapposti",
+          "dettaglio": "button#prec / button.mono.min-h-11; button#succ / button.mono.min-h-11"
+        }
+      ],
+      "altezza": 1999,
+      "animazioni": 6
+    },
+    {
+      "dispositivo": "430",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.respiro.pointer-events-none (bordo destro 530px); button.mono.min-h-11 (bordo destro 447px)"
+        },
+        {
+          "tipo": "elementi-sovrapposti",
+          "dettaglio": "button.spunta / button.mono.min-h-11; input#pasto-0 / button.mono.min-h-11; input#pasto-0 / button.mono.min-h-11; input#pasto-0 / button.mono.min-h-11; input#pasto-0 / button.mono.min-h-11"
+        }
+      ],
+      "altezza": 2009,
+      "animazioni": 6
+    },
+    {
+      "dispositivo": "tablet",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.respiro.pointer-events-none (bordo destro 920px)"
+        }
+      ],
+      "altezza": 1845,
+      "animazioni": 6
+    },
+    {
+      "dispositivo": "desktop",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "div.respiro.pointer-events-none (bordo destro 1539px)"
+        }
+      ],
+      "altezza": 1481,
+      "animazioni": 6
+    }
+  ],
+  "meta": {
+    "mancanti": [],
+    "testoFinto": false
+  },
+  "console": [],
+  "rete": []
+}

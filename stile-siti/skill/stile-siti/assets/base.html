@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Titolo della pagina</title>
+<meta name="description" content="Descrizione breve della pagina per le anteprime dei link.">
+<meta name="theme-color" content="#0b1020">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Titolo della pagina">
+<meta property="og:description" content="Descrizione breve della pagina per le anteprime dei link.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=DM+Sans:wght@400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme {
+  --color-fondo: #0b1020;
+  --color-superficie: #121a33;
+  --color-testo: #e8ecff;
+  --color-tenue: #9aa4cf;
+  --color-accento: #5eead4;
+  --font-titolo: "Fraunces", serif;
+  --font-testo: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--color-fondo);
+  color: var(--color-testo);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titolo);
+  text-wrap: balance;
+  line-height: 1.05;
+}
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accento);
+  outline-offset: 3px;
+}
+
+.js .rivela {
+  opacity: 0;
+  translate: 0 1.5rem;
+  transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.js .rivela.dentro {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .js .rivela { opacity: 1; translate: 0 0; }
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="min-h-[100svh] grid content-center px-5 py-20 md:px-12">
+    <p class="rivela font-mono text-sm text-tenue" style="--i:0">N. 01 · etichetta</p>
+    <h1 class="rivela mt-4 text-[clamp(2.75rem,10vw,7rem)] font-bold" style="--i:1">Titolo che nasce dal soggetto</h1>
+    <p class="rivela mt-6 max-w-xl text-tenue" style="--i:2">Testo vero e plausibile, scritto per questo soggetto.</p>
+  </section>
+</main>
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var els = document.querySelectorAll('.rivela');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('dentro'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('dentro');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

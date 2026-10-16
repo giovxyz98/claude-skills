@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>giovxyz98 · la cassettiera</title>
+<meta name="description" content="Indice dei progetti personali di Giovanni su GitHub: app, scraper e siti, ordinati in una cassettiera da officina.">
+<meta name="theme-color" content="#14181a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="giovxyz98 · la cassettiera">
+<meta property="og:description" content="Indice dei progetti personali di Giovanni su GitHub: app, scraper e siti, ordinati in una cassettiera da officina.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='8' width='84' height='84' rx='6' fill='%23232a2d'/%3E%3Crect x='20' y='30' width='60' height='14' fill='%23c9a45c'/%3E%3Crect x='20' y='56' width='60' height='14' fill='%23ff6a1a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme {
+  --color-fondo: #14181a;
+  --color-acciaio: #232a2d;
+  --color-acciaio-alto: #2f383c;
+  --color-testo: #e9ecea;
+  --color-tenue: #a3aeb0;
+  --color-ottone: #d4af63;
+  --color-accento: #ff6a1a;
+  --font-titolo: "Big Shoulders Display", sans-serif;
+  --font-testo: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --radius-card: 6px;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+}
+
+html { color-scheme: dark; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(70% 38% at 50% -6%, rgb(255 190 110 / .22), transparent 70%),
+    radial-gradient(50% 30% at 90% 60%, rgb(212 175 99 / .06), transparent 70%),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / .018) 0 1px, transparent 1px 7px),
+    var(--color-fondo);
+  background-attachment: fixed;
+  color: var(--color-testo);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-titolo); text-wrap: balance; line-height: .95; text-transform: uppercase; }
+p { text-wrap: pretty; }
+:focus-visible { outline: 2px solid var(--color-accento); outline-offset: 3px; }
+
+.lampada {
+  position: absolute; left: 50%; top: 0; width: 2px; height: 3.5rem;
+  background: linear-gradient(var(--color-acciaio-alto), var(--color-ottone));
+  translate: -50% 0;
+}
+.lampada::after {
+  content: ""; position: absolute; left: 50%; bottom: -.5rem; width: 4.5rem; height: 1.4rem; translate: -50% 0;
+  border-radius: 4.5rem 4.5rem 0 0; background: linear-gradient(#3a4448, #1b2123);
+  box-shadow: 0 10px 40px 8px rgb(255 190 110 / .35);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lampada { transform-origin: top center; animation: dondola 7s ease-in-out infinite alternate; }
+}
+@keyframes dondola { from { rotate: -1.2deg; } to { rotate: 1.2deg; } }
+
+.numero-gigante {
+  font-family: var(--font-titolo); font-weight: 900; line-height: .8;
+  font-size: clamp(9rem, 48vw, 22rem);
+  color: transparent; -webkit-text-stroke: 2px rgb(212 175 99 / .55);
+  text-shadow: 0 0 60px rgb(255 140 60 / .18);
+  user-select: none;
+}
+
+.chip {
+  min-height: 44px; padding: 0 1.1rem; border-radius: var(--radius-card);
+  font-family: var(--font-mono); font-size: .85rem; letter-spacing: .04em; white-space: nowrap;
+  color: var(--color-tenue);
+  background: linear-gradient(#2c3539, #1f2629);
+  border: 1px solid rgb(255 255 255 / .09);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .1) inset, 0 6px 14px -6px rgb(0 0 0 / .7);
+  transition: transform .25s var(--ease-uscita), color .25s, box-shadow .25s;
+  touch-action: manipulation;
+}
+.chip:active { transform: scale(.97); }
+.chip[aria-pressed="true"] {
+  color: #1a0d03; background: linear-gradient(#ff8a47, #ff6a1a);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .35) inset, 0 8px 24px -8px rgb(255 106 26 / .7);
+}
+@media (hover: hover) and (pointer: fine) { .chip:hover { transform: translateY(-2px); color: var(--color-testo); } .chip[aria-pressed="true"]:hover { color: #1a0d03; } }
+
+.telaio {
+  background: linear-gradient(#0d1011, #171c1e);
+  border-radius: 10px; padding: .6rem;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .06), 0 2px 0 rgb(255 255 255 / .05) inset, 0 40px 80px -30px rgb(0 0 0 / .9), 0 0 120px -40px rgb(255 140 60 / .25);
+}
+
+.cassetto {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem;
+  min-height: 15rem; padding: 1.1rem 1.1rem 1.25rem; border-radius: var(--radius-card);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / .07), transparent 22%),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / .02) 0 2px, transparent 2px 5px),
+    linear-gradient(160deg, var(--color-acciaio-alto), var(--color-acciaio));
+  border: 1px solid rgb(255 255 255 / .09);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .12) inset, 0 -3px 0 rgb(0 0 0 / .35) inset, 0 14px 22px -12px rgb(0 0 0 / .85), 0 34px 50px -28px rgb(0 0 0 / .8);
+  transition: transform .45s var(--ease-uscita), box-shadow .45s var(--ease-uscita);
+  text-decoration: none; color: inherit; touch-action: manipulation;
+}
+.cassetto.grande { background-image:
+    radial-gradient(60% 80% at 100% 0%, rgb(255 106 26 / .16), transparent 70%),
+    linear-gradient(180deg, rgb(255 255 255 / .07), transparent 22%),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / .02) 0 2px, transparent 2px 5px),
+    linear-gradient(160deg, var(--color-acciaio-alto), var(--color-acciaio)); }
+.cassetto::before, .cassetto::after {
+  content: ""; position: absolute; top: .55rem; width: 7px; height: 7px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #aab4b6, #3a4448 70%);
+  box-shadow: 0 1px 1px rgb(0 0 0 / .8);
+}
+.cassetto::before { left: .55rem; }
+.cassetto::after { right: .55rem; }
+.cassetto:active { transform: translateY(-.5rem) scale(.99); }
+@media (hover: hover) and (pointer: fine) {
+  .cassetto:hover { transform: translateY(-.6rem); box-shadow: 0 1px 0 rgb(255 255 255 / .16) inset, 0 -3px 0 rgb(0 0 0 / .35) inset, 0 30px 36px -14px rgb(0 0 0 / .9), 0 50px 70px -30px rgb(255 140 60 / .22); }
+  .cassetto:hover .maniglia { width: 5.5rem; }
+}
+
+.targhetta {
+  display: inline-block; align-self: flex-start; margin-top: .6rem; padding: .3rem .75rem;
+  font-family: var(--font-mono); font-weight: 500; font-size: .8rem; letter-spacing: .06em;
+  color: #2a1f08; background: linear-gradient(#ecd08c, #b88d3c);
+  border-radius: 3px; box-shadow: 0 1px 0 rgb(255 255 255 / .5) inset, 0 2px 4px rgb(0 0 0 / .6);
+  max-width: 100%; overflow-wrap: anywhere;
+}
+.maniglia {
+  height: 9px; width: 4rem; border-radius: 9px; margin-inline: auto;
+  background: linear-gradient(#7d888b, #2c3336);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .35) inset, 0 6px 10px rgb(0 0 0 / .7);
+  transition: width .45s var(--ease-uscita);
+}
+.tag { font-family: var(--font-mono); font-size: .75rem; color: var(--color-tenue); padding: .15rem .5rem; border: 1px solid rgb(255 255 255 / .12); border-radius: 3px; background: rgb(0 0 0 / .22); }
+
+.cassetto[hidden] { display: none; }
+
+.cassettiera { display: grid; gap: 1.1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .cassettiera { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cassetto.grande { grid-column: span 2; } .cassetto.intero { grid-column: span 2; } }
+@media (min-width: 1024px) {
+  .cassettiera { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.4rem; }
+  .cassetto { grid-column: span 2; }
+  .cassetto.grande { grid-column: span 4; min-height: 17rem; }
+  .cassetto.meta { grid-column: span 3; }
+  .cassetto.intero { grid-column: span 6; min-height: 12rem; }
+}
+
+.scorri { overflow-x: auto; scrollbar-width: none; }
+.scorri::-webkit-scrollbar { display: none; }
+
+.js .rivela {
+  opacity: 0; translate: 0 1.5rem;
+  transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js .rivela.dentro { opacity: 1; translate: 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js .rivela { opacity: 1; translate: 0 0; }
+}
+</style>
+</head>
+<body>
+<a href="#cassetti" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-accento focus:text-black focus:px-3 focus:py-2">Salta ai progetti</a>
+<header class="relative overflow-hidden px-5 pt-24 pb-12 md:px-12 md:pt-28 lg:pb-20">
+  <div class="lampada" aria-hidden="true"></div>
+  <div class="mx-auto grid max-w-7xl items-end gap-2 lg:grid-cols-[1.1fr_.9fr]">
+    <div>
+      <p class="rivela font-mono text-sm tracking-wide text-ottone" style="--i:0">~/giovxyz98 / progetti</p>
+      <h1 class="rivela mt-4 text-[clamp(3.6rem,17vw,10rem)] font-black" style="--i:1">La cassettiera<br><span class="text-accento">dell'officina</span></h1>
+      <p class="rivela mt-6 max-w-lg text-tenue" style="--i:2">Ogni cosa che ho costruito nelle sere libere sta in un cassetto con la sua targhetta: app per il quotidiano, scraper che lavorano da soli, qualche sito. Tocca un cassetto e si apre il repository.</p>
+    </div>
+    <div class="rivela relative mt-4 text-right lg:mt-0" style="--i:3" aria-hidden="true">
+      <div class="numero-gigante">08</div>
+      <p class="-mt-2 font-mono text-xs uppercase tracking-[.3em] text-ottone/80 sm:text-sm">cassetti pieni</p>
+    </div>
+  </div>
+</header>
+
+<main id="cassetti" class="px-5 pb-24 md:px-12">
+  <div class="mx-auto max-w-7xl">
+    <div class="rivela scorri -mx-5 mb-6 flex gap-2 px-5 md:mx-0 md:px-0" style="--i:0" role="group" aria-label="Filtra per tipo">
+      <button class="chip" type="button" data-filtro="tutti" aria-pressed="true">tutti · 08</button>
+      <button class="chip" type="button" data-filtro="app" aria-pressed="false">app · 05</button>
+      <button class="chip" type="button" data-filtro="scraper" aria-pressed="false">scraper · 02</button>
+      <button class="chip" type="button" data-filtro="sito" aria-pressed="false">siti · 01</button>
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" id="stato"></p>
+
+    <div class="telaio rivela" style="--i:1">
+      <div class="cassettiera">
+
+        <a class="cassetto grande" data-tipo="app" href="https://github.com/giovxyz98/barbshop_" aria-label="Apri il repository barbshop_">
+          <div>
+            <span class="targhetta">barbshop_</span>
+            <h2 class="mt-5 text-4xl font-black sm:text-5xl">Barbshop</h2>
+            <p class="mt-3 max-w-md text-tenue">Agenda online per barbieri: il salone gestisce servizi, prodotti e clienti, il cliente prenota dal telefono. Un salone, un'agenda, nessun pagamento online.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">node</span><span class="tag">web app</span><span class="tag">prenotazioni</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto" data-tipo="app" href="https://github.com/giovxyz98/Gestore_prenotazioni" aria-label="Apri il repository Gestore_prenotazioni">
+          <div>
+            <span class="targhetta">Gestore_prenotazioni</span>
+            <h2 class="mt-5 text-3xl font-black">Gestore prenotazioni</h2>
+            <p class="mt-3 text-tenue">Spettacoli, sale con editor dei posti e biglietti, con un backend a servizi sopra 15 entità.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">java</span><span class="tag">spring data</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto" data-tipo="app" href="https://github.com/giovxyz98/gmail-cleaner" aria-label="Apri il repository gmail-cleaner">
+          <div>
+            <span class="targhetta">gmail-cleaner</span>
+            <h2 class="mt-5 text-3xl font-black">Gmail Cleaner</h2>
+            <p class="mt-3 text-tenue">Ripulisce la casella ragionando per mittente: statistiche, disiscrizione automatica e Cestino. Tutto in locale.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">node</span><span class="tag">google oauth</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto" data-tipo="app" href="https://github.com/giovxyz98/music_downloader" aria-label="Apri il repository music_downloader">
+          <div>
+            <span class="targhetta">music_downloader</span>
+            <h2 class="mt-5 text-3xl font-black">Music Downloader</h2>
+            <p class="mt-3 text-tenue">Scarica brani in MP3 con i tag ID3 al posto giusto: cerca, sceglie il video più pertinente e scrive artista, album e anno.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">python</span><span class="tag">yt-dlp</span><span class="tag">ffmpeg</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto" data-tipo="app" href="https://github.com/giovxyz98/titktok_live" aria-label="Apri il repository titktok_live">
+          <div>
+            <span class="targhetta">titktok_live</span>
+            <h2 class="mt-5 text-3xl font-black">TikTok Live Snake</h2>
+            <p class="mt-3 text-tenue">Gioco per le dirette: due serpenti, uomini contro donne, e i regali degli spettatori decidono la partita.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">node</span><span class="tag">live</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto meta" data-tipo="scraper" href="https://github.com/giovxyz98/bakekaincontrii" aria-label="Apri il repository bakekaincontrii">
+          <div>
+            <span class="targhetta">bakekaincontrii</span>
+            <h2 class="mt-5 text-3xl font-black">Monitor annunci</h2>
+            <p class="mt-3 max-w-md text-tenue">Segue nel tempo gli annunci di una categoria, con storico per inserzionista, ricerca e filtri. Dati in un unico file SQLite.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">node 22</span><span class="tag">sqlite</span><span class="tag">express</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto meta" data-tipo="scraper" href="https://github.com/giovxyz98/immobiliare" aria-label="Apri il repository immobiliare">
+          <div>
+            <span class="targhetta">immobiliare</span>
+            <h2 class="mt-5 text-3xl font-black">Cacciatore di annunci</h2>
+            <p class="mt-3 max-w-md text-tenue">Raccoglie gli annunci immobiliari per macrozona e microzona, li salva in un database e li mostra in una pagina di consultazione.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">node</span><span class="tag">scraping</span><span class="tag">db</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+        <a class="cassetto intero" data-tipo="sito" href="https://github.com/giovxyz98/siti_personali" aria-label="Apri il repository siti_personali">
+          <div class="max-w-2xl">
+            <span class="targhetta">siti_personali</span>
+            <h2 class="mt-5 text-3xl font-black sm:text-4xl">Siti personali</h2>
+            <p class="mt-3 text-tenue">Il portfolio e gli attrezzi da banco: una toolbox e un calcolatore RAL, tutto in pagine HTML pubblicate su GitHub Pages.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2"><span class="tag">html</span><span class="tag">tailwind</span><span class="tag">github pages</span></div>
+          <div class="maniglia" aria-hidden="true"></div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="px-5 pb-12 md:px-12">
+  <div class="mx-auto flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 font-mono text-sm text-tenue sm:flex-row sm:items-center sm:justify-between">
+    <p>github.com/giovxyz98</p>
+    <a class="inline-flex min-h-[44px] items-center text-ottone underline decoration-ottone/40 underline-offset-4" href="https://github.com/giovxyz98?tab=repositories">tutti i repository →</a>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var els = document.querySelectorAll('.rivela');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('dentro'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  var chips = document.querySelectorAll('.chip');
+  var cassetti = document.querySelectorAll('.cassetto');
+  var stato = document.getElementById('stato');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.dataset.filtro, n = 0;
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      cassetti.forEach(function (k) {
+        var mostra = f === 'tutti' || k.dataset.tipo === f;
+        k.hidden = !mostra;
+        if (mostra) n++;
+      });
+      stato.textContent = n + ' progetti mostrati';
+    });
+  });
+})();
+</script>
+</body>
+</html>

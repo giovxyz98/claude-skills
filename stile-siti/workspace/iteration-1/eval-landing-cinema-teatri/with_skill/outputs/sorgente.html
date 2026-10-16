@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sipario – prenota cinema e teatri</title>
+<meta name="description" content="Sipario: scegli lo spettacolo, scegli i posti in sala, tieni il biglietto nel telefono. Cinema e teatri della tua città in un'unica app.">
+<meta name="theme-color" content="#12060a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sipario – prenota cinema e teatri">
+<meta property="og:description" content="Scegli lo spettacolo, scegli i posti in sala, tieni il biglietto nel telefono.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237a1428'/%3E%3Cpath d='M18 22h64v10c-10 0-10 12-0 12v14c-10 0-10 12 0 12v8H18v-8c10 0 10-12 0-12V44c10 0 10-12 0-12z' fill='%23d9a441'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme {
+  --color-fondo: #12060a;
+  --color-superficie: #1f0b11;
+  --color-velluto: #7a1428;
+  --color-velluto-vivo: #a31d38;
+  --color-ottone: #d9a441;
+  --color-ottone-chiaro: #f0cf8a;
+  --color-testo: #f7e9d4;
+  --color-tenue: #cdb3a4;
+  --font-titolo: "Gloock", serif;
+  --font-testo: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --radius-card: .5rem;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+}
+
+html { color-scheme: dark; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(70% 40% at 50% 0%, rgb(163 29 56 / .35), transparent 70%),
+    radial-gradient(50% 30% at 100% 55%, rgb(122 20 40 / .28), transparent 70%),
+    radial-gradient(50% 30% at 0% 85%, rgb(217 164 65 / .08), transparent 70%),
+    var(--color-fondo);
+  color: var(--color-testo);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1, h2, h3 { font-family: var(--font-titolo); font-weight: 400; text-wrap: balance; line-height: 1.02; overflow-wrap: anywhere; }
+p { text-wrap: pretty; }
+:focus-visible { outline: 2px solid var(--color-ottone); outline-offset: 3px; }
+
+.grana::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay; z-index: 60;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.velluto {
+  background:
+    repeating-linear-gradient(90deg, rgb(0 0 0 / .32) 0 14px, rgb(255 255 255 / .05) 22px, rgb(0 0 0 / .32) 34px),
+    linear-gradient(180deg, var(--color-velluto-vivo), var(--color-velluto) 50%, #4a0c19);
+}
+
+.ottone-testo {
+  background-image: linear-gradient(100deg, #b27f05, var(--color-ottone-chiaro) 45%, var(--color-ottone) 70%, #b27f05);
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.cornice {
+  border: 1px solid rgb(217 164 65 / .35);
+  background: linear-gradient(160deg, rgb(255 255 255 / .06), rgb(255 255 255 / .015));
+  box-shadow: 0 1px 0 rgb(240 207 138 / .18) inset, 0 2px 6px rgb(0 0 0 / .5), 0 30px 60px -25px rgb(0 0 0 / .8);
+  border-radius: var(--radius-card);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 52px; padding: .8rem 1.6rem; border-radius: .35rem;
+  font-weight: 700; letter-spacing: .01em; touch-action: manipulation;
+  transition: transform .25s var(--ease-uscita), box-shadow .25s var(--ease-uscita);
+}
+.btn-primario {
+  color: #2a0a12;
+  background: linear-gradient(180deg, var(--color-ottone-chiaro), var(--color-ottone) 60%, #b98a2c);
+  box-shadow: 0 1px 0 #fff8 inset, 0 10px 30px -8px rgb(217 164 65 / .55), 0 2px 4px rgb(0 0 0 / .5);
+}
+.btn-secondario { border: 1px solid rgb(217 164 65 / .5); color: var(--color-ottone-chiaro); }
+.btn:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primario:hover { box-shadow: 0 1px 0 #fff8 inset, 0 16px 40px -8px rgb(217 164 65 / .75), 0 2px 4px rgb(0 0 0 / .5); }
+}
+
+.faretto {
+  position: absolute; pointer-events: none;
+  background: conic-gradient(from 180deg at 50% 0, transparent 160deg, rgb(240 207 138 / .22) 175deg, rgb(240 207 138 / .22) 185deg, transparent 200deg);
+  filter: blur(6px);
+  transform-origin: 50% 0;
+  animation: oscilla 9s ease-in-out infinite alternate;
+}
+@keyframes oscilla { from { rotate: -5deg; } to { rotate: 5deg; } }
+
+.tenda { position: fixed; top: 0; bottom: 0; width: 51%; z-index: 80; pointer-events: none; }
+.tenda-sx { left: 0; transform-origin: 0 50%; animation: apri-sx 1.6s .25s var(--ease-uscita) forwards; box-shadow: 14px 0 40px rgb(0 0 0 / .6); }
+.tenda-dx { right: 0; transform-origin: 100% 50%; animation: apri-dx 1.6s .25s var(--ease-uscita) forwards; box-shadow: -14px 0 40px rgb(0 0 0 / .6); }
+@keyframes apri-sx { to { translate: -105% 0; scale: .6 1; } }
+@keyframes apri-dx { to { translate: 105% 0; scale: .6 1; } }
+
+.posto {
+  width: 100%; aspect-ratio: 1; border-radius: 40% 40% 28% 28%;
+  background: linear-gradient(180deg, #5d1626, #3a0d18);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .1) inset;
+  transition: background .5s var(--ease-uscita), box-shadow .5s var(--ease-uscita), scale .5s var(--ease-uscita);
+}
+.posto.occupato { background: #26121a; box-shadow: none; opacity: .75; }
+.posto.scelto {
+  background: linear-gradient(180deg, var(--color-ottone-chiaro), var(--color-ottone));
+  box-shadow: 0 0 14px rgb(240 207 138 / .75), 0 0 2px #fff inset;
+  scale: 1.12;
+  opacity: 1;
+}
+
+.striscia { display: flex; width: max-content; animation: scorri 38s linear infinite; }
+@keyframes scorri { to { translate: -50% 0; } }
+@media (hover: hover) and (pointer: fine) { .marquee:hover .striscia { animation-play-state: paused; } }
+
+.perforazione {
+  background: radial-gradient(circle at 50% 50%, var(--color-fondo) 0 5px, transparent 5.5px) 0 0 / 100% 18px repeat-y;
+}
+
+.rigo-programma { transition: background .35s var(--ease-uscita); }
+@media (hover: hover) and (pointer: fine) {
+  .rigo-programma:hover { background: rgb(217 164 65 / .06); }
+}
+
+.js .rivela { opacity: 0; translate: 0 1.5rem; transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita); transition-delay: calc(var(--i, 0) * 80ms); }
+.js .rivela.dentro { opacity: 1; translate: 0 0; }
+.js .sale { opacity: 0; translate: 0 2.5rem; scale: .96; transition: opacity 1s var(--ease-uscita), translate 1s var(--ease-uscita), scale 1s var(--ease-uscita); }
+.js .sale.dentro { opacity: 1; translate: 0 0; scale: 1; }
+
+@media (max-width: 767px) { .faretto { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .tenda { display: none; }
+  .striscia { animation: none; }
+  .js .rivela, .js .sale { opacity: 1; translate: 0 0; scale: 1; }
+}
+</style>
+</head>
+<body class="grana">
+
+<div class="tenda tenda-sx velluto" aria-hidden="true"></div>
+<div class="tenda tenda-dx velluto" aria-hidden="true"></div>
+
+<a href="#contenuto" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[90] focus:bg-ottone focus:px-4 focus:py-2 focus:text-fondo">Salta al contenuto</a>
+
+<header class="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-5 md:px-12">
+  <a href="#" class="flex min-h-[44px] items-center gap-3 font-titolo text-2xl" aria-label="Sipario, inizio pagina">
+    <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 22h76v12c-11 0-11 14 0 14v6c-11 0-11 14 0 14v10H12V68c11 0 11-14 0-14v-6c11 0 11-14 0-14z" fill="#d9a441"/></svg>
+    Sipario
+  </a>
+  <a href="#scarica" class="btn btn-secondario !min-h-[44px] !px-4 text-sm">Scarica l'app</a>
+</header>
+
+<main id="contenuto">
+
+<section class="relative isolate min-h-[100svh] overflow-hidden px-5 pb-16 pt-28 md:px-12 md:pt-32 lg:grid lg:grid-cols-12 lg:items-center lg:gap-6">
+  <div class="faretto -z-10 left-[8%] top-0 h-[120%] w-[60%]" aria-hidden="true"></div>
+  <div class="faretto -z-10 left-[38%] top-0 h-[120%] w-[60%]" style="animation-delay:-4s;animation-direction:alternate-reverse" aria-hidden="true"></div>
+
+  <div class="lg:col-span-7">
+    <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-ottone" style="--i:0">Cinema · Teatri · Sera</p>
+    <h1 class="rivela mt-5 text-[clamp(3rem,12vw,8.2rem)]" style="--i:1">
+      Il posto giusto, <span class="ottone-testo">prima che si spengano le luci.</span>
+    </h1>
+    <p class="rivela mt-7 max-w-xl text-lg text-tenue" style="--i:2">
+      Sipario riunisce i cinema e i teatri della tua città. Scegli lo spettacolo, tocca le poltrone sulla pianta della sala, e il biglietto è già nel telefono.
+    </p>
+    <div class="rivela mt-9 flex flex-wrap items-center gap-x-6 gap-y-4" style="--i:3">
+      <a href="#scarica" class="btn btn-primario">Prenota la prima serata</a>
+      <span class="font-mono text-sm text-tenue">iPhone e Android · gratis</span>
+    </div>
+  </div>
+
+  <div class="sale relative mt-14 lg:col-span-5 lg:mt-0" style="transition-delay:.9s">
+    <div class="cornice relative mx-auto max-w-sm bg-superficie p-5 lg:translate-x-8 lg:rotate-[2deg]">
+      <div class="flex items-baseline justify-between font-mono text-xs text-tenue">
+        <span>TEATRO SOCIALE · PALCHI</span><span>21:00</span>
+      </div>
+      <h2 class="mt-3 text-3xl">Il misantropo</h2>
+      <p class="text-sm text-tenue">Molière · regia di Elena Contarini</p>
+      <div class="mx-auto mt-5 h-2 w-3/4 rounded-full bg-gradient-to-b from-ottone-chiaro to-ottone opacity-80 shadow-[0_8px_30px_rgb(240_207_138_/_.6)]" aria-hidden="true"></div>
+      <p class="mt-1 text-center font-mono text-[10px] uppercase tracking-[.3em] text-tenue">palcoscenico</p>
+      <div id="pianta-hero" class="mt-4 grid grid-cols-[repeat(11,minmax(0,1fr))] gap-1.5" aria-hidden="true"></div>
+      <div class="mt-5 flex items-center justify-between border-t border-ottone/25 pt-4">
+        <span class="font-mono text-sm">File C · posti 5–6</span>
+        <span class="font-mono text-lg text-ottone-chiaro">28,00 €</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee overflow-hidden border-y border-ottone/25 bg-black/30 py-4" aria-hidden="true">
+  <div class="striscia font-mono text-sm uppercase tracking-[.2em] text-ottone-chiaro">
+    <div class="flex shrink-0 gap-10 pr-10">
+      <span>Sala 3 · 21:15</span><span>✦</span><span>Teatro Sociale · 20:45</span><span>✦</span><span>Cinema Astra · Originale sottotitolato</span><span>✦</span><span>Il misantropo · Ultime 14 poltrone</span><span>✦</span><span>Arena Giardino · Domenica 22:00</span><span>✦</span><span>Sala Verdi · Anteprima</span><span>✦</span>
+    </div>
+    <div class="flex shrink-0 gap-10 pr-10">
+      <span>Sala 3 · 21:15</span><span>✦</span><span>Teatro Sociale · 20:45</span><span>✦</span><span>Cinema Astra · Originale sottotitolato</span><span>✦</span><span>Il misantropo · Ultime 14 poltrone</span><span>✦</span><span>Arena Giardino · Domenica 22:00</span><span>✦</span><span>Sala Verdi · Anteprima</span><span>✦</span>
+    </div>
+  </div>
+</div>
+
+<section class="px-5 py-[clamp(4rem,10vw,9rem)] md:px-12" aria-labelledby="t-programma">
+  <div class="mx-auto max-w-6xl lg:grid lg:grid-cols-12 lg:gap-12">
+    <div class="lg:col-span-4">
+      <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-ottone">Programma di sala</p>
+      <h2 id="t-programma" class="rivela mt-4 text-[clamp(2.4rem,6vw,4.4rem)] lg:sticky lg:top-12" style="--i:1">Tre gesti, poi si entra.</h2>
+    </div>
+    <ol class="mt-10 divide-y divide-ottone/25 border-y border-ottone/25 lg:col-span-8 lg:mt-0">
+      <li class="rigo-programma rivela grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 py-7 md:gap-x-10" style="--i:0">
+        <span class="row-span-2 font-titolo text-[clamp(3.5rem,11vw,7rem)] leading-none ottone-testo">01</span>
+        <h3 class="self-end text-2xl md:text-3xl">Scegli la serata</h3>
+        <p class="text-tenue">Film in sala o commedia a teatro: filtri per quartiere, orario e lingua. Se un titolo è in originale sottotitolato, lo vedi subito.</p>
+      </li>
+      <li class="rigo-programma rivela grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 py-7 md:gap-x-10" style="--i:1">
+        <span class="row-span-2 font-titolo text-[clamp(3.5rem,11vw,7rem)] leading-none ottone-testo">02</span>
+        <h3 class="self-end text-2xl md:text-3xl">Tocca le poltrone</h3>
+        <p class="text-tenue">La pianta è quella vera della sala: platea, palchi, loggione. Vedi la visuale dal posto e quali file restano libere.</p>
+      </li>
+      <li class="rigo-programma rivela grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 py-7 md:gap-x-10" style="--i:2">
+        <span class="row-span-2 font-titolo text-[clamp(3.5rem,11vw,7rem)] leading-none ottone-testo">03</span>
+        <h3 class="self-end text-2xl md:text-3xl">Mostra il telefono</h3>
+        <p class="text-tenue">Il biglietto ha il suo codice e funziona anche senza rete. All'ingresso basta avvicinarlo, nessuna stampa e nessuna coda al botteghino.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="relative px-5 pb-[clamp(4rem,10vw,9rem)] md:px-12" aria-labelledby="t-funzioni">
+  <div class="mx-auto max-w-6xl">
+    <h2 id="t-funzioni" class="rivela max-w-3xl text-[clamp(2.4rem,6.5vw,5rem)]">Pensata per chi arriva di corsa dal lavoro.</h2>
+
+    <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-flow-dense">
+
+      <article class="cornice rivela bg-superficie p-6 md:col-span-4 md:row-span-2 md:p-8" style="--i:0">
+        <p class="font-mono text-xs uppercase tracking-[.25em] text-ottone">Pianta della sala</p>
+        <h3 class="mt-3 text-3xl md:text-4xl">Siediti dove vedi meglio.</h3>
+        <p class="mt-3 max-w-md text-tenue">Ogni poltrona ha la sua visuale e il suo prezzo. Se sei in due o in sei, Sipario cerca i posti affiancati.</p>
+        <div id="pianta-bento" class="mx-auto mt-7 grid max-w-xl grid-cols-[repeat(15,minmax(0,1fr))] gap-1.5 sm:gap-2" aria-label="Esempio di pianta con i posti suggeriti" role="img"></div>
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <button id="suggerisci" type="button" class="btn btn-secondario !min-h-[48px]">Suggeriscimi due posti</button>
+          <ul class="flex gap-5 font-mono text-xs text-tenue">
+            <li class="flex items-center gap-2"><span class="inline-block size-3 rounded-sm bg-[#5d1626]"></span>libero</li>
+            <li class="flex items-center gap-2"><span class="inline-block size-3 rounded-sm bg-[#26121a]"></span>occupato</li>
+            <li class="flex items-center gap-2"><span class="inline-block size-3 rounded-sm bg-ottone"></span>tuo</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rivela relative overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br from-[#0e1722] via-[#0a1119] to-[#050810] p-6 md:col-span-2 md:p-7" style="--i:1;border:1px solid rgb(150 190 230 / .22);box-shadow:0 30px 60px -25px #000">
+        <div class="pointer-events-none absolute inset-x-6 top-0 h-24 rounded-b-[50%] bg-[radial-gradient(60%_100%_at_50%_0%,rgb(160_200_255_/_.35),transparent)]" aria-hidden="true"></div>
+        <p class="relative font-mono text-xs uppercase tracking-[.25em] text-[#9fc3ea]">Cinema</p>
+        <h3 class="relative mt-8 text-2xl">Lingua, formato, sottotitoli.</h3>
+        <p class="relative mt-2 text-sm text-tenue">Originale, doppiato, 2D o IMAX: ogni proiezione dice cosa sarà prima che tu paghi.</p>
+      </article>
+
+      <article class="velluto rivela relative overflow-hidden rounded-[var(--radius-card)] p-6 md:col-span-2 md:p-7" style="--i:2;box-shadow:0 1px 0 rgb(255 255 255 / .15) inset,0 30px 60px -25px #000">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" aria-hidden="true"></div>
+        <p class="relative font-mono text-xs uppercase tracking-[.25em] text-ottone-chiaro">Teatro</p>
+        <h3 class="relative mt-8 text-2xl">Palchi, platea, loggione.</h3>
+        <p class="relative mt-2 text-sm text-[#f3dcc8]">Con la nota sulla visuale ridotta, onesta, scritta dal teatro stesso.</p>
+      </article>
+
+      <article class="cornice rivela bg-superficie p-0 md:col-span-3" style="--i:3">
+        <div class="grid grid-cols-[1fr_auto_auto]">
+          <div class="p-6">
+            <p class="font-mono text-xs uppercase tracking-[.25em] text-ottone">Il biglietto</p>
+            <h3 class="mt-3 text-2xl">Nel telefono, anche senza rete.</h3>
+            <p class="mt-2 text-sm text-tenue">Si salva nel portafoglio e si apre dalla schermata di blocco.</p>
+          </div>
+          <div class="perforazione w-3" aria-hidden="true"></div>
+          <div class="flex w-24 flex-col items-center justify-center gap-2 bg-ottone/10 p-3 text-center sm:w-28">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#f0cf8a" stroke-width="1.5" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 14v3M14 20h3M20 20h1"/></svg>
+            <span class="font-mono text-[10px] text-tenue">C5 · C6</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cornice rivela bg-superficie p-6 md:col-span-3" style="--i:4">
+        <p class="font-mono text-xs uppercase tracking-[.25em] text-ottone">Il tuo turno</p>
+        <h3 class="mt-3 text-2xl">Tutto esaurito? Mettiti in lista.</h3>
+        <p class="mt-2 text-sm text-tenue">Se una poltrona si libera, ti avvisiamo per prima. Hai dieci minuti per prenderla.</p>
+        <div class="mt-5 flex items-center gap-3 font-mono text-sm">
+          <span class="relative flex size-3"><span class="absolute inline-flex size-full animate-ping rounded-full bg-ottone opacity-70"></span><span class="relative inline-flex size-3 rounded-full bg-ottone"></span></span>
+          Sei il 3° in attesa
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="relative isolate overflow-hidden px-5 py-[clamp(5rem,12vw,10rem)] md:px-12" aria-labelledby="t-luci">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_50%_100%,rgb(122_20_40_/_.5),transparent_70%)]" aria-hidden="true"></div>
+  <div class="mx-auto max-w-4xl text-right">
+    <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-ottone">Promemoria</p>
+    <h2 id="t-luci" class="rivela mt-4 text-[clamp(2.6rem,8vw,6.2rem)]" style="--i:1">Le luci si abbassano tra <span class="ottone-testo">quaranta minuti.</span></h2>
+    <p class="rivela ml-auto mt-7 max-w-lg text-lg text-tenue" style="--i:2">Un avviso quando devi uscire di casa, calcolato sul traffico e sull'orario del primo atto. Non perdi più il prologo.</p>
+  </div>
+</section>
+
+<section id="scarica" class="px-5 pb-[clamp(4rem,10vw,8rem)] md:px-12" aria-labelledby="t-cta">
+  <div class="cornice relative mx-auto max-w-5xl overflow-hidden bg-superficie">
+    <div class="grid md:grid-cols-[1fr_auto_16rem]">
+      <div class="p-7 md:p-12">
+        <p class="font-mono text-sm uppercase tracking-[.25em] text-ottone">Ingresso libero</p>
+        <h2 id="t-cta" class="mt-4 text-[clamp(2.4rem,6vw,4.4rem)]">Questa sera, dove vai?</h2>
+        <p class="mt-4 max-w-md text-tenue">Scarica Sipario e prenota la prima serata. L'app è gratuita e non chiede la carta per sfogliare il programma.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#" class="btn btn-primario">Scarica per iPhone</a>
+          <a href="#" class="btn btn-secondario">Scarica per Android</a>
+        </div>
+      </div>
+      <div class="perforazione hidden w-3 md:block" aria-hidden="true"></div>
+      <div class="flex items-center justify-center gap-4 border-t border-dashed border-ottone/40 bg-ottone/10 p-6 md:flex-col md:border-t-0 md:p-8">
+        <span class="font-titolo text-6xl ottone-testo">N°1</span>
+        <span class="font-mono text-xs text-tenue">Fila A · Posto 1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-ottone/25 px-5 py-10 md:px-12" style="padding-bottom:calc(2.5rem + env(safe-area-inset-bottom))">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-tenue md:flex-row md:items-center md:justify-between">
+    <p class="font-titolo text-xl text-testo">Sipario</p>
+    <p class="font-mono text-xs">Prenotazioni per cinema e teatri · Spettacoli e dati di esempio</p>
+    <nav aria-label="Link del piè di pagina" class="flex gap-6"><a class="inline-flex min-h-[44px] items-center underline decoration-ottone/50 underline-offset-4" href="#">Privacy</a><a class="inline-flex min-h-[44px] items-center underline decoration-ottone/50 underline-offset-4" href="#">Contatti</a></nav>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var els = document.querySelectorAll('.rivela, .sale');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('dentro'); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  function pianta(id, cols, righe, corridoi, scelti, seed) {
+    var box = document.getElementById(id); if (!box) return [];
+    var out = [], s = seed;
+    function rnd() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+    for (var r = 0; r < righe; r++) {
+      for (var c = 0; c < cols; c++) {
+        var d = document.createElement('div');
+        if (corridoi.indexOf(c) > -1) { box.appendChild(d); continue; }
+        d.className = 'posto' + (rnd() < .38 ? ' occupato' : '');
+        if (scelti.indexOf(r + ',' + c) > -1) d.className = 'posto scelto';
+        box.appendChild(d); out.push({ el: d, r: r, c: c });
+      }
+    }
+    return out;
+  }
+  pianta('pianta-hero', 11, 6, [5], ['2,3', '2,4'], 7);
+  var grande = pianta('pianta-bento', 15, 7, [7], [], 21);
+  var btn = document.getElementById('suggerisci');
+  if (btn && grande.length) {
+    var coppie = [[4, 3, 4], [5, 9, 10], [3, 11, 12], [4, 1, 2]];
+    var n = 0;
+    function mostra() {
+      grande.forEach(function (p) { p.el.classList.remove('scelto'); });
+      var k = coppie[n % coppie.length]; n++;
+      grande.filter(function (p) { return p.r === k[0] && (p.c === k[1] || p.c === k[2]); })
+        .forEach(function (p) { p.el.classList.remove('occupato'); p.el.classList.add('scelto'); });
+    }
+    mostra();
+    btn.addEventListener('click', mostra);
+  }
+})();
+</script>
+</body>
+</html>

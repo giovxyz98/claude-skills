@@ -1,0 +1,29 @@
+{
+  "skill_name": "stile-siti",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Usa stile-siti: fammi una pagina per tenere traccia della mia dieta settimanale",
+      "expected_output": "Pagina HTML coerente col tema, mobile first, animata, con concept dichiarato",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Usa stile-siti: crea una pagina per il viaggio a Madrid con l'itinerario",
+      "expected_output": "Pagina HTML coerente col tema, mobile first, animata, con concept dichiarato",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Usa stile-siti: una landing per presentare la mia app di prenotazioni per cinema e teatri",
+      "expected_output": "Pagina HTML coerente col tema, mobile first, animata, con concept dichiarato",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Usa stile-siti: una pagina indice dei miei progetti personali su GitHub",
+      "expected_output": "Pagina HTML coerente col tema, mobile first, animata, con concept dichiarato",
+      "files": []
+    }
+  ]
+}

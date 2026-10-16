@@ -1,0 +1,81 @@
+{
+  "risultati": [
+    {
+      "dispositivo": "360",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "button.chip (bordo destro 409px); button.chip (bordo destro 532px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 3762,
+      "animazioni": 1
+    },
+    {
+      "dispositivo": "animazioni",
+      "problemi": []
+    },
+    {
+      "dispositivo": "390",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "button.chip (bordo destro 409px); button.chip (bordo destro 532px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 3705,
+      "animazioni": 1
+    },
+    {
+      "dispositivo": "430",
+      "problemi": [
+        {
+          "tipo": "elementi-oltre-lo-schermo",
+          "dettaglio": "button.chip (bordo destro 532px)"
+        },
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 3604,
+      "animazioni": 1
+    },
+    {
+      "dispositivo": "tablet",
+      "problemi": [
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 2918,
+      "animazioni": 1
+    },
+    {
+      "dispositivo": "desktop",
+      "problemi": [
+        {
+          "tipo": "aree-toccabili-piccole",
+          "dettaglio": "1: a.sr-only.focus:not-sr-only 1x1"
+        }
+      ],
+      "altezza": 2338,
+      "animazioni": 1
+    }
+  ],
+  "meta": {
+    "mancanti": [],
+    "testoFinto": false
+  },
+  "console": [],
+  "rete": []
+}

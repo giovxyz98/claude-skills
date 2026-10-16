@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madrid, quattro giorni all'ora blu</title>
+<meta name="description" content="Itinerario di quattro giorni a Madrid: Prado, Retiro, tapas a La Latina, tramonto sui tetti e notti a Malasaña.">
+<meta name="theme-color" content="#0a1530">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Madrid, quattro giorni all'ora blu">
+<meta property="og:description" content="Itinerario di quattro giorni a Madrid: Prado, Retiro, tapas a La Latina, tramonto sui tetti e notti a Malasaña.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a1530'/%3E%3Ccircle cx='50' cy='46' r='24' fill='%23f0a24b'/%3E%3Crect y='62' width='100' height='38' fill='%23b8402a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme {
+  --color-fondo: #0a1530;
+  --color-notte: #060d20;
+  --color-superficie: #101d40;
+  --color-testo: #f3ead9;
+  --color-tenue: #aab5d6;
+  --color-accento: #f0a24b;
+  --color-mattone: #c4482f;
+  --color-cobalto: #3b6fd9;
+  --font-titolo: "Gloock", serif;
+  --font-testo: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+  --radius-card: 1.5rem;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(70% 40% at 80% 6%, rgb(240 162 75 / .16), transparent 70%),
+    radial-gradient(60% 30% at 0% 45%, rgb(59 111 217 / .16), transparent 70%),
+    radial-gradient(70% 35% at 100% 80%, rgb(196 72 47 / .18), transparent 70%),
+    linear-gradient(180deg, #0a1530 0%, #0c1a3d 55%, #140f26 100%);
+  background-attachment: scroll;
+  color: var(--color-testo);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .07;
+  mix-blend-mode: overlay;
+  z-index: 60;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titolo);
+  font-weight: 400;
+  text-wrap: balance;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accento);
+  outline-offset: 3px;
+}
+
+.js .rivela {
+  opacity: 0;
+  translate: 0 1.5rem;
+  transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.js .rivela.dentro {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.vetro {
+  background: linear-gradient(135deg, rgb(255 255 255 / .09), rgb(255 255 255 / .03));
+  border: 1px solid rgb(255 255 255 / .12);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / .14) inset, 0 2px 4px rgb(0 0 0 / .25), 0 24px 50px -24px rgb(0 0 0 / .6);
+  border-radius: var(--radius-card);
+}
+
+.sole {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle at 40% 35%, #ffd9a0 0%, #f0a24b 45%, #d9622f 100%);
+  box-shadow: 0 0 60px 10px rgb(240 162 75 / .45), 0 0 160px 50px rgb(196 72 47 / .3);
+  animation: respiro 9s ease-in-out infinite alternate;
+}
+
+@keyframes respiro {
+  from { translate: 0 0; scale: 1; }
+  to { translate: 0 -10px; scale: 1.035; }
+}
+
+.insegna {
+  text-shadow: 0 0 6px rgb(240 162 75 / .9), 0 0 22px rgb(240 162 75 / .55), 0 0 48px rgb(196 72 47 / .5);
+  animation: accende 6s steps(1) infinite;
+}
+
+@keyframes accende {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  93%, 95% { opacity: .55; }
+}
+
+.tetti {
+  animation: deriva 40s ease-in-out infinite alternate;
+}
+
+@keyframes deriva {
+  from { translate: -1.5% 0; }
+  to { translate: 1.5% 0; }
+}
+
+.tappa {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.tappa::before {
+  content: "";
+  position: absolute;
+  left: .3rem;
+  top: .55rem;
+  bottom: -1.6rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgb(240 162 75 / .7), rgb(240 162 75 / .08));
+}
+
+.tappa::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .5rem;
+  width: .65rem;
+  height: .65rem;
+  border-radius: 999px;
+  background: var(--color-accento);
+  box-shadow: 0 0 0 4px rgb(240 162 75 / .18), 0 0 16px rgb(240 162 75 / .7);
+}
+
+.tappa:last-child::before { display: none; }
+
+.pillola {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / .16);
+  background: rgb(10 21 48 / .75);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  color: var(--color-testo);
+  transition: transform .25s var(--ease-uscita), background .25s var(--ease-uscita), color .25s var(--ease-uscita);
+  touch-action: manipulation;
+}
+
+.pillola:active { transform: scale(.96); }
+.pillola[aria-current="true"] {
+  background: var(--color-accento);
+  color: var(--color-notte);
+  border-color: var(--color-accento);
+  font-weight: 500;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pillola:hover { transform: translateY(-2px); border-color: var(--color-accento); }
+  .card-lift { transition: transform .35s var(--ease-uscita); }
+  .card-lift:hover { transform: translateY(-4px); }
+}
+
+.card-lift:active { transform: scale(.985); }
+
+.cta {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  background: var(--color-accento);
+  color: var(--color-notte);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .2) inset, 0 12px 30px -8px rgb(240 162 75 / .6);
+  transition: transform .25s var(--ease-uscita), box-shadow .25s var(--ease-uscita);
+  touch-action: manipulation;
+}
+
+.cta:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgb(255 255 255 / .3) inset, 0 18px 40px -8px rgb(240 162 75 / .75); }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scorre 38s linear infinite;
+}
+
+@keyframes scorre {
+  to { translate: -50% 0; }
+}
+
+.nascondi-scroll { scrollbar-width: none; }
+.nascondi-scroll::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .js .rivela { opacity: 1; translate: 0 0; }
+}
+</style>
+</head>
+<body>
+<a href="#giorno-1" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[70] focus:rounded-full focus:bg-accento focus:px-4 focus:py-2 focus:text-notte">Salta all'itinerario</a>
+
+<header class="sticky top-0 z-50 border-b border-white/10 bg-notte/80 backdrop-blur-md" style="padding-top: env(safe-area-inset-top)">
+  <nav aria-label="Giorni del viaggio" class="mx-auto flex max-w-6xl items-center gap-2 overflow-x-auto px-4 py-2 nascondi-scroll md:px-10">
+    <span class="mr-2 hidden font-mono text-xs uppercase tracking-widest text-accento sm:inline">~/madrid</span>
+    <a class="pillola" href="#giorno-1" data-nav="giorno-1">G1 · Centro</a>
+    <a class="pillola" href="#giorno-2" data-nav="giorno-2">G2 · Arte</a>
+    <a class="pillola" href="#giorno-3" data-nav="giorno-3">G3 · Tapas</a>
+    <a class="pillola" href="#giorno-4" data-nav="giorno-4">G4 · Notte</a>
+    <a class="pillola" href="#pratico" data-nav="pratico">Pratico</a>
+  </nav>
+</header>
+
+<main>
+  <section class="relative isolate overflow-hidden px-5 pb-0 pt-14 md:px-12 md:pt-20" aria-labelledby="titolo">
+    <div class="sole -z-10" style="width: clamp(9rem, 38vw, 22rem); height: clamp(9rem, 38vw, 22rem); right: -6%; top: clamp(8.5rem, 14vw, 9rem);" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl">
+      <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-accento" style="--i:0">Ottobre 2026 · 4 giorni<span class="hidden sm:inline"> · 40°25′N 3°42′O</span></p>
+      <h1 id="titolo" class="rivela mt-5 text-[clamp(3.4rem,15vw,11rem)] leading-[.92]" style="--i:1">
+        Madrid<span class="block text-[.42em] leading-tight text-testo/90">all'ora blu</span>
+      </h1>
+      <p class="rivela mt-8 max-w-xl text-lg text-tenue md:text-xl" style="--i:2">
+        Mattini di musei e parchi, pomeriggi lunghi a tavola, poi il cielo che vira al cobalto sopra i tetti di mattoni mentre si accendono le insegne dei bar. Quattro giorni, tutti a piedi.
+      </p>
+      <div class="rivela mt-8 flex flex-wrap items-center gap-4" style="--i:3">
+        <a href="#giorno-1" class="cta">Inizia dal giorno 1
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="font-mono text-sm text-tenue">Volo FCO → MAD · 2h 30</span>
+      </div>
+    </div>
+
+    <div class="relative mt-14 md:mt-20" aria-hidden="true">
+      <svg class="tetti block w-[110%] max-w-none -ml-[5%] text-notte" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" fill="currentColor" style="height: clamp(7rem, 20vw, 15rem); width: 110%;">
+        <path d="M0 220V150h40v-30h50v30h30V90l20-18 20 18v60h40v-50h60v50h30v-70h14l8-26 8 26h14v70h40v-40h70v40h30V110h40v40h50v-60l25-22 25 22v60h40v-30h60v30h30v-80h20l10-34 10 34h20v80h50v-45h60v45h40v-30h50v30h30v-60l22-20 22 20v60h60v-40h50v40h40V120h40v30h40v-30h50v100z"/>
+        <g fill="#f0a24b" opacity=".85">
+          <rect x="60" y="136" width="6" height="8"/><rect x="132" y="130" width="6" height="8"/><rect x="262" y="124" width="6" height="8"/><rect x="418" y="110" width="6" height="8"/><rect x="560" y="122" width="6" height="8"/><rect x="700" y="116" width="6" height="8"/><rect x="842" y="104" width="6" height="8"/><rect x="990" y="124" width="6" height="8"/><rect x="1110" y="132" width="6" height="8"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <div class="overflow-hidden border-y border-white/10 bg-notte py-3" aria-hidden="true">
+    <div class="marquee font-mono text-sm uppercase tracking-[.3em] text-tenue">
+      <span class="whitespace-nowrap pr-10">Prado · Retiro · Palacio Real · La Latina · Malasaña · Lavapiés · Gran Vía · Templo de Debod ·</span>
+      <span class="whitespace-nowrap pr-10">Prado · Retiro · Palacio Real · La Latina · Malasaña · Lavapiés · Gran Vía · Templo de Debod ·</span>
+    </div>
+  </div>
+
+  <section class="mx-auto max-w-6xl px-5 py-[clamp(4rem,10vw,8rem)] md:px-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16" id="giorno-1" aria-labelledby="g1">
+    <div class="lg:sticky lg:top-24 lg:self-start">
+      <p class="rivela font-mono text-[clamp(5rem,22vw,11rem)] leading-none text-transparent [-webkit-text-stroke:1px_var(--color-accento)]" style="--i:0" aria-hidden="true">01</p>
+      <h2 id="g1" class="rivela -mt-3 text-4xl md:text-5xl" style="--i:1">Il cuore di Madrid</h2>
+      <p class="rivela mt-4 max-w-md text-tenue" style="--i:2">Arrivo, Puerta del Sol, i Austrias e il tramonto al Templo de Debod. Giornata a passo lento per prendere le misure della città.</p>
+    </div>
+    <ol class="mt-10 space-y-9 lg:mt-4">
+      <li class="tappa rivela" style="--i:0">
+        <p class="font-mono text-sm text-accento">11:00</p>
+        <h3 class="mt-1 text-2xl">Puerta del Sol e Plaza Mayor</h3>
+        <p class="mt-2 text-tenue">Si parte dal chilometro zero, davanti all'orso e al corbezzolo. Dieci minuti a piedi e si entra nella piazza porticata, con i portici rosso mattone.</p>
+      </li>
+      <li class="tappa rivela" style="--i:0">
+        <p class="font-mono text-sm text-accento">13:30</p>
+        <h3 class="mt-1 text-2xl">Bocadillo de calamares</h3>
+        <p class="mt-2 text-tenue">Pranzo in piedi in una delle friggitorie intorno a Plaza Mayor: panino croccante di calamari e una caña. Circa 6 €.</p>
+      </li>
+      <li class="tappa rivela" style="--i:0">
+        <p class="font-mono text-sm text-accento">16:00</p>
+        <h3 class="mt-1 text-2xl">Palacio Real e Almudena</h3>
+        <p class="mt-2 text-tenue">Sale dorate e armeria. Poi un caffè nei giardini di Sabatini e la cattedrale di fronte, con il soffitto dipinto a cassettoni.</p>
+      </li>
+      <li class="tappa rivela" style="--i:0">
+        <p class="font-mono text-sm text-accento">19:15</p>
+        <h3 class="mt-1 text-2xl">Tramonto al Templo de Debod</h3>
+        <p class="mt-2 text-tenue">Un tempio egizio del IV secolo a.C. che riflette il cielo in una vasca. Arriva mezz'ora prima: il cielo diventa arancio, poi cobalto.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="relative isolate overflow-hidden bg-notte/70 py-[clamp(4rem,10vw,8rem)]" id="giorno-2" aria-labelledby="g2">
+    <div class="pointer-events-none absolute -right-24 top-10 -z-10 h-72 w-72 rounded-full bg-cobalto/25 blur-3xl" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl px-5 md:px-12">
+      <div class="md:flex md:items-end md:justify-between md:gap-10">
+        <div>
+          <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-accento" style="--i:0">Giorno 02 · Paseo del Arte</p>
+          <h2 id="g2" class="rivela mt-3 text-4xl md:text-6xl" style="--i:1">Arte al mattino,<br>Retiro al pomeriggio</h2>
+        </div>
+        <p class="rivela mt-5 max-w-sm text-tenue md:mt-0" style="--i:2">Il triangolo dell'arte è a dieci minuti di cammino tra un vertice e l'altro. Prenota i biglietti online.</p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-flow-dense">
+        <article class="vetro card-lift rivela relative overflow-hidden p-6 md:col-span-4 md:row-span-2 md:p-9" style="--i:0">
+          <div class="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-mattone/40 blur-2xl" aria-hidden="true"></div>
+          <p class="font-mono text-sm text-accento">09:30 · Museo del Prado</p>
+          <h3 class="mt-3 text-3xl md:text-5xl">Velázquez, Goya e il Giardino delle delizie</h3>
+          <p class="mt-4 max-w-lg text-tenue">Due ore e mezza bastano per Las Meninas, le Pitture nere e Bosch. Entra dalla porta di Goya per saltare la coda, parti dalla sala 12 e lascia il resto a un secondo giro.</p>
+          <ul class="mt-6 flex flex-wrap gap-2 font-mono text-xs">
+            <li class="rounded-full border border-white/15 px-3 py-1.5">Sala 12 · Las Meninas</li>
+            <li class="rounded-full border border-white/15 px-3 py-1.5">Sala 56 · Bosch</li>
+            <li class="rounded-full border border-white/15 px-3 py-1.5">Gratis 18:00–20:00</li>
+          </ul>
+        </article>
+        <article class="vetro card-lift rivela p-6 md:col-span-2" style="--i:1">
+          <p class="font-mono text-sm text-accento">13:00</p>
+          <h3 class="mt-2 text-2xl">Menú del día</h3>
+          <p class="mt-2 text-tenue">Tre portate, pane e vino per circa 15 € nelle vie di Huertas. Prenota alle 14, non prima.</p>
+        </article>
+        <article class="vetro card-lift rivela p-6 md:col-span-2" style="--i:2">
+          <p class="font-mono text-sm text-accento">15:30</p>
+          <h3 class="mt-2 text-2xl">Parque del Retiro</h3>
+          <p class="mt-2 text-tenue">Barca sul lago, Palacio de Cristal e un'ora sul prato senza guardare il telefono.</p>
+        </article>
+        <article class="vetro card-lift rivela p-6 md:col-span-6 md:flex md:items-center md:justify-between md:gap-8" style="--i:3">
+          <div>
+            <p class="font-mono text-sm text-accento">20:30 · Cena</p>
+            <h3 class="mt-2 text-2xl md:text-3xl">Tortilla e vermut a Huertas</h3>
+          </div>
+          <p class="mt-3 max-w-md text-tenue md:mt-0">Una tortilla di patate ancora morbida al centro e un vermut alla spina con la fetta d'arancia. Poi a letto presto: domani si mangia molto.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" id="giorno-3" aria-labelledby="g3">
+    <p class="rivela font-mono text-sm uppercase tracking-[.25em] text-accento" style="--i:0">Giorno 03 · La Latina e Lavapiés</p>
+    <h2 id="g3" class="rivela mt-3 max-w-3xl text-4xl md:text-6xl" style="--i:1">Un giorno intero di <span class="insegna text-accento">tapas</span></h2>
+    <p class="rivela mt-5 max-w-xl text-tenue" style="--i:2">Il sabato si va alla Cava Baja: un bicchiere e un assaggio per locale, poi si cambia. Se c'è la fila, è buon segno.</p>
+
+    <div class="mt-10 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 nascondi-scroll md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+      <article class="vetro card-lift rivela w-[78vw] max-w-sm shrink-0 snap-center p-6 md:w-auto md:max-w-none" style="--i:0">
+        <p class="font-mono text-xs text-accento">10:30 · El Rastro</p>
+        <h3 class="mt-3 text-2xl">Mercato delle pulci</h3>
+        <p class="mt-3 text-tenue">Ogni domenica e festivo, lungo la Ribera de Curtidores. Vecchie insegne, dischi e ceramiche.</p>
+      </article>
+      <article class="vetro card-lift rivela w-[78vw] max-w-sm shrink-0 snap-center p-6 md:w-auto md:max-w-none" style="--i:1">
+        <p class="font-mono text-xs text-accento">13:30 · Cava Baja</p>
+        <h3 class="mt-3 text-2xl">Giro di assaggi</h3>
+        <p class="mt-3 text-tenue">Croquetas di prosciutto, patatas bravas, huevos rotos. Circa 4 € a tapa, 3 locali in un'ora.</p>
+      </article>
+      <article class="vetro card-lift rivela w-[78vw] max-w-sm shrink-0 snap-center p-6 md:w-auto md:max-w-none" style="--i:2">
+        <p class="font-mono text-xs text-accento">17:00 · Lavapiés</p>
+        <h3 class="mt-3 text-2xl">Murales e caffè</h3>
+        <p class="mt-3 text-tenue">Il quartiere più mescolato: street art sulle facciate, librerie, un tè alla menta in una teteria.</p>
+      </article>
+      <article class="vetro card-lift rivela w-[78vw] max-w-sm shrink-0 snap-center p-6 md:w-auto md:max-w-none" style="--i:3">
+        <p class="font-mono text-xs text-accento">21:30 · Cena</p>
+        <h3 class="mt-3 text-2xl">Cocido madrileño</h3>
+        <p class="mt-3 text-tenue">Il piatto della città, servito in tre vuelcos: prima il brodo, poi ceci e carne. Si ordina per due.</p>
+      </article>
+    </div>
+    <p class="mt-2 font-mono text-xs text-tenue md:hidden" aria-hidden="true">scorri →</p>
+  </section>
+
+  <section class="relative isolate overflow-hidden px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" id="giorno-4" aria-labelledby="g4">
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-mattone/30 to-transparent" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl">
+      <p class="rivela font-mono text-[clamp(5rem,22vw,11rem)] leading-none text-transparent [-webkit-text-stroke:1px_var(--color-accento)] md:text-right" style="--i:0" aria-hidden="true">04</p>
+      <div class="md:ml-auto md:max-w-2xl md:text-right">
+        <h2 id="g4" class="rivela -mt-3 text-4xl md:text-6xl" style="--i:1">Malasaña, fino a tardi</h2>
+        <p class="rivela mt-4 text-tenue" style="--i:2">Ultimo giorno: mattina libera per Gran Vía e acquisti, poi un aperitivo sul tetto e la notte nei vicoli del quartiere.</p>
+      </div>
+
+      <div class="mt-12 grid gap-4 md:grid-cols-3">
+        <article class="vetro card-lift rivela p-6" style="--i:0">
+          <p class="font-mono text-sm text-accento">11:00</p>
+          <h3 class="mt-2 text-2xl">Gran Vía e Mercado de San Miguel</h3>
+          <p class="mt-2 text-tenue">Facciate déco su una strada a otto corsie, poi il mercato in ferro e vetro per un cono di jamón ibérico.</p>
+        </article>
+        <article class="vetro card-lift rivela p-6 md:translate-y-8" style="--i:1">
+          <p class="font-mono text-sm text-accento">19:00</p>
+          <h3 class="mt-2 text-2xl">Terrazza del Círculo de Bellas Artes</h3>
+          <p class="mt-2 text-tenue">Ingresso 5 €. Il panorama a 360° sui tetti, con la Metropolis dorata proprio davanti.</p>
+        </article>
+        <article class="vetro card-lift rivela p-6 md:translate-y-16" style="--i:2">
+          <p class="font-mono text-sm text-accento">22:00</p>
+          <h3 class="mt-2 text-2xl">Plaza Dos de Mayo</h3>
+          <p class="mt-2 text-tenue">Bar a luci basse, vinili e cocktail. La notte inizia qui e finisce con chocolate con churros da San Ginés.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 pb-[clamp(4rem,10vw,8rem)] pt-10 md:px-12 md:pt-28" id="pratico" aria-labelledby="pr">
+    <h2 id="pr" class="rivela text-4xl md:text-5xl" style="--i:0">Da sapere prima di partire</h2>
+    <dl class="mt-10 grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-white/12 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="bg-notte p-6">
+        <dt class="font-mono text-xs uppercase tracking-widest text-accento">Muoversi</dt>
+        <dd class="mt-2 text-tenue">Il centro si fa a piedi. Abono turístico da 3 giorni: 20 € per metro e bus.</dd>
+      </div>
+      <div class="bg-notte p-6">
+        <dt class="font-mono text-xs uppercase tracking-widest text-accento">Orari</dt>
+        <dd class="mt-2 text-tenue">Pranzo dalle 14, cena dalle 21. Molti musei chiudono il lunedì.</dd>
+      </div>
+      <div class="bg-notte p-6">
+        <dt class="font-mono text-xs uppercase tracking-widest text-accento">Dormire</dt>
+        <dd class="mt-2 text-tenue">Zona Sol o Chueca per stare vicino a tutto. Notti rumorose: chiedi una camera interna.</dd>
+      </div>
+      <div class="bg-notte p-6">
+        <dt class="font-mono text-xs uppercase tracking-widest text-accento">Clima</dt>
+        <dd class="mt-2 text-tenue">Ottobre: 10° al mattino, 21° al pomeriggio. Una giacca leggera per la sera.</dd>
+      </div>
+    </dl>
+  </section>
+</main>
+
+<footer class="border-t border-white/10 bg-notte px-5 py-14 text-center md:px-12" style="padding-bottom: calc(3.5rem + env(safe-area-inset-bottom))">
+  <p class="font-titolo text-3xl insegna text-accento md:text-5xl">¡Hasta pronto, Madrid!</p>
+  <p class="mt-3 font-mono text-xs uppercase tracking-[.25em] text-tenue">~/madrid · 4 giorni · ottobre 2026</p>
+  <a href="#titolo" class="pillola mt-8">Torna su ↑</a>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (!t) return;
+      ev.preventDefault();
+      t.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+  var els = document.querySelectorAll('.rivela');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('dentro'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('dentro');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  var links = document.querySelectorAll('[data-nav]');
+  if ('IntersectionObserver' in window) {
+    var nav = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (a) {
+            if (a.dataset.nav === e.target.id) {
+              a.setAttribute('aria-current', 'true');
+              a.scrollIntoView({ inline: 'center', block: 'nearest' });
+            } else {
+              a.removeAttribute('aria-current');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    links.forEach(function (a) {
+      var s = document.getElementById(a.dataset.nav);
+      if (s) nav.observe(s);
+    });
+  }
+})();
+</script>
+</body>
+</html>
