@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Banco prova · i miei progetti su GitHub</title>
+<meta name="description" content="Indice dei progetti personali di Giovanni su GitHub: strumenti, esperimenti con l'AI, piccole app e giochi, con stack e link al repository.">
+<meta name="theme-color" content="#17150f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Banco prova · i miei progetti su GitHub">
+<meta property="og:description" content="Strumenti, esperimenti con l'AI, piccole app e giochi: l'indice dei progetti personali di Giovanni.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2317150f'/%3E%3Cpath d='M14 46V18h10l8 14 8-14h10v28h-8V32l-6 10h-8l-6-10v14z' fill='%23ff7a1a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme static {
+  --color-fondo: #17150f;
+  --color-piastra: #211e16;
+  --color-piastra-alta: #2b271c;
+  --color-bordo: #3a3526;
+  --color-testo: #f1ead9;
+  --color-tenue: #b3a98f;
+  --color-accento: #ff7a1a;
+  --color-ottone: #c9a35a;
+  --font-titolo: "Big Shoulders Display", sans-serif;
+  --font-testo: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --radius-piastra: 4px;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(60% 45% at 85% -5%, rgb(255 122 26 / .20), transparent 65%),
+    radial-gradient(50% 40% at 0% 35%, rgb(201 163 90 / .10), transparent 65%),
+    repeating-linear-gradient(135deg, rgb(255 255 255 / .018) 0 1px, transparent 1px 14px),
+    var(--color-fondo);
+  background-attachment: fixed;
+  color: var(--color-testo);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titolo);
+  text-wrap: balance;
+  line-height: .95;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accento);
+  outline-offset: 3px;
+}
+
+.piastra {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-piastra-alta), var(--color-piastra));
+  border: 1px solid var(--color-bordo);
+  border-radius: var(--radius-piastra);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / .07) inset,
+    0 2px 0 rgb(0 0 0 / .5),
+    0 24px 40px -24px rgb(0 0 0 / .8);
+  transition: transform .3s var(--ease-uscita), box-shadow .3s var(--ease-uscita), border-color .3s var(--ease-uscita);
+  touch-action: manipulation;
+}
+.piastra:active { transform: scale(.985); }
+.piastra:focus-visible { outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .piastra:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklch, var(--color-accento) 60%, var(--color-bordo));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / .09) inset,
+      0 2px 0 rgb(0 0 0 / .5),
+      0 28px 50px -22px rgb(255 122 26 / .35);
+  }
+  .piastra:hover .freccia { translate: .2rem -.2rem; color: var(--color-accento); }
+}
+
+.vite::before, .vite::after {
+  content: ""; position: absolute; top: .6rem; width: 9px; height: 9px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f3dba0, var(--color-ottone) 55%, #6b5424);
+  box-shadow: 0 1px 2px rgb(0 0 0 / .7);
+}
+.vite::before { left: .6rem; }
+.vite::after { right: .6rem; }
+
+.freccia { transition: translate .3s var(--ease-uscita), color .3s var(--ease-uscita); }
+
+.pillola {
+  min-height: 44px; padding: 0 1.1rem;
+  display: inline-flex; align-items: center; gap: .5rem; flex: none;
+  font-family: var(--font-mono); font-size: .8125rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--color-tenue);
+  background: var(--color-piastra);
+  border: 1px solid var(--color-bordo);
+  border-radius: 2px;
+  box-shadow: 0 2px 0 rgb(0 0 0 / .5);
+  transition: transform .2s var(--ease-uscita), background .25s, color .25s, border-color .25s;
+  touch-action: manipulation;
+}
+.pillola:active { transform: translateY(2px) scale(.97); box-shadow: none; }
+.pillola[aria-pressed="true"] {
+  color: #1b1002;
+  background: linear-gradient(180deg, #ff9a4d, var(--color-accento));
+  border-color: #ffb27a;
+  box-shadow: 0 2px 0 #8a3c00, 0 10px 24px -10px rgb(255 122 26 / .6);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pillola:hover:not([aria-pressed="true"]) { color: var(--color-testo); border-color: var(--color-ottone); }
+}
+
+.scorri { scrollbar-width: none; mask-image: linear-gradient(90deg, #000 88%, transparent); }
+.scorri::-webkit-scrollbar { display: none; }
+
+.cerca {
+  width: 100%; min-height: 48px; padding: 0 1rem 0 2.75rem;
+  font: 400 1rem var(--font-mono); color: var(--color-testo);
+  background: rgb(0 0 0 / .35);
+  border: 1px solid var(--color-bordo);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / .5) inset;
+}
+.cerca::placeholder { color: #8b8268; }
+
+.tag {
+  font-family: var(--font-mono); font-size: .75rem; letter-spacing: .03em;
+  padding: .15rem .5rem; color: var(--color-ottone);
+  border: 1px solid rgb(201 163 90 / .35); border-radius: 2px;
+  background: rgb(201 163 90 / .06);
+}
+
+.num {
+  font-family: var(--font-titolo); font-weight: 900; line-height: .8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(255 122 26 / .55);
+}
+
+.striscia {
+  height: 10px;
+  background: repeating-linear-gradient(135deg, var(--color-accento) 0 12px, #17150f 12px 24px);
+  opacity: .9;
+  box-shadow: 0 0 24px rgb(255 122 26 / .35);
+}
+
+.lampada {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--color-accento);
+  box-shadow: 0 0 0 3px rgb(255 122 26 / .2), 0 0 14px var(--color-accento);
+  animation: respiro 3.2s ease-in-out infinite;
+}
+@keyframes respiro { 50% { opacity: .45; box-shadow: 0 0 0 3px rgb(255 122 26 / .08), 0 0 4px var(--color-accento); } }
+
+.js .rivela {
+  opacity: 0;
+  translate: 0 1.5rem;
+  transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.js .rivela.dentro { opacity: 1; translate: 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .js .rivela { opacity: 1; translate: 0 0; }
+}
+</style>
+</head>
+<body>
+<a href="#elenco" class="absolute left-3 top-3 z-[60] -translate-y-20 bg-accento px-3 py-2 font-mono text-sm text-black focus:translate-y-0">Salta all'elenco</a>
+
+<header class="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-16">
+  <div class="rivela flex items-center gap-3 font-mono text-[.8125rem] uppercase tracking-wider text-tenue" style="--i:0">
+    <span class="lampada" aria-hidden="true"></span>
+    <span>Banco prova</span><span class="text-bordo" aria-hidden="true">/</span><span id="aggiornato">aggiornato oggi</span>
+  </div>
+  <div class="mt-5 grid items-end gap-6 md:grid-cols-[1fr_auto] md:gap-12">
+    <h1 class="rivela text-[clamp(3.75rem,17vw,9.5rem)] font-black" style="--i:1">
+      Cose che<br><span class="text-accento" style="text-shadow:0 0 40px rgb(255 122 26 / .35)">ho costruito</span>
+    </h1>
+    <div class="rivela md:max-w-[17rem] md:pb-3" style="--i:2">
+      <p class="text-tenue">Progetti personali, dai più riusciti a quelli rimasti a metà. Ognuno ha il suo repository su GitHub.</p>
+      <p class="mt-4 font-mono text-sm"><span id="conteggio" class="text-3xl font-medium text-testo [font-variant-numeric:tabular-nums]">0</span> <span class="text-tenue">progetti sul banco</span></p>
+    </div>
+  </div>
+</header>
+
+<div class="striscia" aria-hidden="true"></div>
+
+<main class="mx-auto w-full max-w-6xl px-5 pb-24 pt-10 md:px-10">
+  <section aria-label="Cerca e filtra" class="rivela" style="--i:0">
+    <div class="relative">
+      <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-tenue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label for="cerca" class="sr-only">Cerca un progetto</label>
+      <input id="cerca" class="cerca" type="search" inputmode="search" autocomplete="off" placeholder="cerca per nome o stack" enterkeyhint="search">
+    </div>
+    <div id="filtri" class="scorri -mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-3 md:mx-0 md:px-0" role="group" aria-label="Categorie"></div>
+  </section>
+
+  <section id="elenco" class="mt-8" aria-live="polite">
+    <div id="griglia" class="grid grid-cols-1 gap-5 md:grid-cols-6 md:gap-6"></div>
+    <div id="vuoto" hidden class="piastra vite mt-4 px-6 pb-8 pt-10 text-center">
+      <p class="font-titolo text-4xl font-extrabold uppercase">Niente su questo banco</p>
+      <p class="mx-auto mt-3 max-w-sm text-tenue">Nessun progetto corrisponde alla ricerca. Togli una parola o scegli un'altra categoria.</p>
+      <button id="azzera" type="button" class="pillola mt-6">Azzera i filtri</button>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-bordo">
+  <div class="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-10 font-mono text-[.8125rem] text-tenue md:flex-row md:items-center md:justify-between md:px-10">
+    <p>Tutto il codice è su GitHub, con le sue imperfezioni.</p>
+    <a id="profilo" href="https://github.com/" class="inline-flex min-h-[44px] items-center gap-2 text-testo underline decoration-accento decoration-2 underline-offset-4" rel="noopener">Vedi tutti i repository
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</footer>
+
+<noscript><p class="px-5 pb-10 text-center text-tenue">Per vedere l'elenco dei progetti serve JavaScript.</p></noscript>
+
+<script>
+document.documentElement.classList.add('js');
+
+var UTENTE = 'IL-MIO-UTENTE';
+
+var PROGETTI = [
+  { nome: 'bolletta-lampo', cat: 'Strumenti', stack: ['Python', 'Tesseract'], data: '2026-09', evid: true,
+    desc: 'Legge le bollette in PDF e ne ricava consumi e scadenze in una tabella pronta da incollare nel foglio di casa.' },
+  { nome: 'diario-dei-sogni', cat: 'App', stack: ['JavaScript', 'Supabase'], data: '2026-08', evid: true,
+    desc: 'Un diario da scrivere appena svegli: voce, tag e una mappa dei sogni che tornano.' },
+  { nome: 'sintesi-riunioni', cat: 'AI', stack: ['TypeScript', 'Claude API'], data: '2026-07',
+    desc: 'Trasforma la trascrizione di una riunione in decisioni, responsabili e scadenze.' },
+  { nome: 'rinomina-foto', cat: 'Strumenti', stack: ['Node.js'], data: '2026-05',
+    desc: 'Rinomina le foto per data e luogo leggendo l\'EXIF. Una riga di terminale per cartella.' },
+  { nome: 'tris-infinito', cat: 'Giochi', stack: ['JavaScript', 'Canvas'], data: '2026-03',
+    desc: 'Tris con griglia che cresce a ogni mossa. Si gioca in due sullo stesso telefono.' },
+  { nome: 'sveglia-gentile', cat: 'App', stack: ['HTML', 'CSS', 'JS'], data: '2026-02',
+    desc: 'Una sveglia che sale di volume in venti minuti e mostra il meteo del giorno.' },
+  { nome: 'prompt-cassetta', cat: 'AI', stack: ['Python', 'SQLite'], data: '2025-12',
+    desc: 'Archivio locale dei prompt che funzionano, con ricerca e versioni.' },
+  { nome: 'spese-a-due', cat: 'App', stack: ['Vue', 'Firebase'], data: '2025-10',
+    desc: 'Spese di coppia divise al centesimo, senza account e senza pubblicità.' },
+  { nome: 'dado-del-pranzo', cat: 'Giochi', stack: ['Svelte'], data: '2025-06',
+    desc: 'Non sapete dove mangiare? Un dado a sei facce con sei posti scelti da voi.' }
+];
+
+var CATEGORIE = ['Tutti'].concat(PROGETTI.map(function (p) { return p.cat; }).filter(function (c, i, a) { return a.indexOf(c) === i; }));
+var stato = { cat: 'Tutti', q: '' };
+
+var MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+function dataBreve(s) { var p = s.split('-'); return MESI[+p[1] - 1] + ' ' + p[0]; }
+function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+var IC_FRECCIA = '<svg class="freccia h-5 w-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+
+function scheda(p, n) {
+  var url = 'https://github.com/' + UTENTE + '/' + p.nome;
+  var tags = p.stack.map(function (s) { return '<li class="tag">' + esc(s) + '</li>'; }).join('');
+  var num = ('0' + (n + 1)).slice(-2);
+  var larga = p.evid;
+  var cls = larga ? 'md:col-span-3 lg:col-span-3' : 'md:col-span-2';
+  var titolo = larga ? 'text-[clamp(2.4rem,9vw,3.5rem)]' : 'text-[2rem]';
+  var pad = larga ? 'px-5 pb-6 pt-12 md:px-7 md:pb-8' : 'px-5 pb-5 pt-11';
+  return '<a href="' + url + '" target="_blank" rel="noopener" class="piastra ' + (larga ? 'vite ' : '') + 'group flex flex-col ' + cls + ' ' + pad + ' rivela" style="--i:' + (n % 6) + '" data-cat="' + esc(p.cat) + '">' +
+    '<div class="flex items-start justify-between gap-4">' +
+      '<span class="num ' + (larga ? 'text-[5.5rem]' : 'text-[3.5rem]') + '" aria-hidden="true">' + num + '</span>' +
+      '<span class="mt-1 font-mono text-xs uppercase tracking-wider text-tenue">' + esc(p.cat) + ' · ' + dataBreve(p.data) + '</span>' +
+    '</div>' +
+    '<h2 class="mt-4 flex items-start justify-between gap-3 break-words font-extrabold ' + titolo + '"><span class="min-w-0 [overflow-wrap:anywhere]">' + esc(p.nome.replace(/-/g, ' ')) + '</span>' + IC_FRECCIA + '</h2>' +
+    '<p class="mt-3 flex-1 text-tenue ' + (larga ? 'md:max-w-md md:text-lg' : '') + '">' + esc(p.desc) + '</p>' +
+    '<ul class="mt-5 flex flex-wrap gap-2" aria-label="Stack">' + tags + '</ul>' +
+    '<span class="sr-only">Apri il repository ' + esc(p.nome) + ' su GitHub</span>' +
+  '</a>';
+}
+
+function filtra() {
+  var q = stato.q.trim().toLowerCase();
+  return PROGETTI.filter(function (p) {
+    if (stato.cat !== 'Tutti' && p.cat !== stato.cat) return false;
+    if (!q) return true;
+    return (p.nome + ' ' + p.desc + ' ' + p.stack.join(' ') + ' ' + p.cat).toLowerCase().indexOf(q) !== -1;
+  });
+}
+
+function osserva(els) {
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('dentro'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+}
+
+var contaRaf = 0;
+function conta(a) {
+  var el = document.getElementById('conteggio');
+  var da = +el.textContent || 0;
+  if (da === a) return;
+  cancelAnimationFrame(contaRaf);
+  var t0 = performance.now();
+  var riduci = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (riduci) { el.textContent = a; return; }
+  (function passo(t) {
+    var k = Math.min(1, (t - t0) / 700);
+    el.textContent = Math.round(da + (a - da) * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) contaRaf = requestAnimationFrame(passo);
+  })(t0);
+}
+
+function disegna(primo) {
+  var lista = filtra();
+  var g = document.getElementById('griglia');
+  g.innerHTML = lista.map(scheda).join('');
+  document.getElementById('vuoto').hidden = lista.length > 0;
+  conta(lista.length);
+  var els = Array.prototype.slice.call(g.querySelectorAll('.rivela'));
+  if (primo) osserva(els); else els.forEach(function (el, i) { requestAnimationFrame(function () { el.classList.add('dentro'); }); });
+}
+
+function disegnaFiltri() {
+  var f = document.getElementById('filtri');
+  f.innerHTML = CATEGORIE.map(function (c) {
+    return '<button type="button" class="pillola" aria-pressed="' + (c === stato.cat) + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+  }).join('');
+}
+
+document.getElementById('filtri').addEventListener('click', function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  stato.cat = b.getAttribute('data-cat');
+  disegnaFiltri(); disegna(false);
+});
+document.getElementById('cerca').addEventListener('input', function (e) { stato.q = e.target.value; disegna(false); });
+document.getElementById('azzera').addEventListener('click', function () {
+  stato = { cat: 'Tutti', q: '' };
+  document.getElementById('cerca').value = '';
+  disegnaFiltri(); disegna(false);
+});
+
+(function () {
+  var ultimo = PROGETTI.map(function (p) { return p.data; }).sort().pop();
+  document.getElementById('aggiornato').textContent = 'ultimo lavoro ' + dataBreve(ultimo);
+  document.getElementById('profilo').href = 'https://github.com/' + UTENTE;
+  disegnaFiltri();
+  disegna(true);
+  osserva(Array.prototype.slice.call(document.querySelectorAll('body > header .rivela, main > section > .rivela, main > .rivela')));
+  osserva(Array.prototype.slice.call(document.querySelectorAll('main section[aria-label] ')));
+})();
+</script>
+</body>
+</html>

@@ -10,8 +10,8 @@ Ogni fase si chiude con una presentazione a Giovanni e si passa alla successiva 
 | 1 Ricerca approfondita | fatta (`08-ricerca-approfondita.md`) |
 | 2 Scrittura della skill | fatta (`skill/stile-siti/`) |
 | 3 Script | fatta, provati sul PC di Giovanni (Windows, Node 22); non provati nell'ambiente Linux di claude.ai |
-| 4 Test | attivazione fatta (14/14 con la sola descrizione); qualità: 4 pagine generate con nuova e vecchia skill, giudizio di Giovanni parziale (nessun voto ancora). Verifiche visive sospese per risparmiare token |
-| 5 Revisione e consegna | da fare. Giovanni ha detto che siamo a circa il 50% del lavoro: non preparare lo zip finché non lo dice lui |
+| 4 Test | attivazione fatta (14/14 con la sola descrizione); qualità: iterazione 1 (concept troppo teatrali), iterazione 2 (4 pagine, piacciono tutte; colore dell'indice GitHub no), iterazione 3 (indice GitHub ricolorato e con movimento vario, piaciuto). Verifiche visive con screenshot sospese per risparmiare token |
+| 5 Revisione e consegna | **quasi pronta** (Giovanni, 16/10/2026). Restano: verifiche visive con screenshot (quando le riabilita), ottimizzazione della descrizione (opzionale), pacchetto. Non preparare lo zip finché non lo dice lui |
 
 Dettaglio e prossimi passi in `09-stato-e-prossimi-passi.md`.
 

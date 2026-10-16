@@ -4,7 +4,7 @@ Documento di passaggio di consegne, aggiornato al 16/10/2026. Chi riprende il la
 
 ## Dove siamo
 
-La skill è scritta, gli script funzionano, i test di attivazione sono superati. Giovanni stima di essere **a circa il 50% del lavoro**: resta da migliorare la qualità delle scelte di stile e da fare revisione, ottimizzazione della descrizione e caricamento. **Non preparare lo zip finché Giovanni non lo chiede.** Per ora **non lanciare screenshot né verifiche sulle pagine** (consumano molti token), salvo richiesta.
+La skill è scritta, gli script funzionano, i test di attivazione sono superati e la qualità delle pagine è ora soddisfacente per Giovanni (iterazioni 2 e 3, 16/10/2026): **la skill è quasi pronta**. Restano revisione finale, verifiche visive con screenshot (sospese per i token), ottimizzazione della descrizione (opzionale) e caricamento. **Non preparare lo zip finché Giovanni non lo chiede.** Per ora **non fare screenshot né controllarli** (consumano molti token), salvo richiesta; generare gli HTML invece va bene.
 
 ## Cosa c'è
 
@@ -53,9 +53,11 @@ Fatte (testi e script, **non ancora riprovate**):
 - Etichetta `~/qualcosa` ripetuta in tutte le pagine: era un segnaposto di `base.html` e un esempio nei riferimenti; corretto.
 - Scelta dello stile affidata al giudizio del modello; `gusto.md` e `direzioni.md` ammorbiditi.
 
-## Da fare per primo, in una sessione separata (Giovanni ha finito i token il 16/10/2026)
+## Fatto il 16/10/2026: sezione "Restyling di una pagina esistente"
 
-**Aggiungere a `SKILL.md` una sezione "Restyling di una pagina esistente".** Perché: è un caso d'uso frequente (Giovanni ha già portato due suoi file reali) e oggi la skill non lo copre; nelle due prove ho dovuto improvvisare il metodo. Contenuto da scrivere, ricavato dalle prove:
+Aggiunta a `SKILL.md` (sotto il metodo, dopo il passo 7) con tutti i punti qui sotto; la descrizione nel frontmatter ora la menziona. Chiarimento di Giovanni sui token: **generare l'HTML non pesa, pesano gli screenshot e il loro controllo**, quindi per ora niente `verifica.mjs` e niente guardare screenshot (nella skill restano). Non ancora provata su un restyling nuovo.
+
+Contenuto della sezione (storico). Perché: è un caso d'uso frequente (Giovanni ha già portato due suoi file reali) e oggi la skill non lo copre; nelle due prove ho dovuto improvvisare il metodo. Contenuto da scrivere, ricavato dalle prove:
 - Lavorare sempre su una **copia**; l'originale non si tocca. Dire dove sta la copia.
 - Preservare logica, `id`, dati, chiamate al backend e i commenti già presenti; cambiare solo aspetto (CSS e classi nelle stringhe JavaScript). Aggiunte al JavaScript solo se servono allo stile (animazioni d'ingresso, apertura di pannelli) e dichiararle.
 - Prima di cambiare stile capire **che cosa è la pagina** dal codice (struttura, funzioni, classi) senza leggere i dati reali; se i record contengono dati di persone (telefoni, foto), non servono: non leggerli.
@@ -67,9 +69,17 @@ Fatte (testi e script, **non ancora riprovate**):
 - `base.html` non serve per un restyling.
 - File con base64 enormi: non stampare grep senza limite; trovare le righe lunghe con `awk` e non leggerle.
 
+## Iterazione 2 (16/10/2026): giudizio di Giovanni
+
+Dopo le correzioni a passi 2-3, `direzioni.md` e `gusto.md`, sono state rigenerate le quattro pagine in `workspace/iteration-2/` (senza screenshot né verifiche; ~80-92k token per agente, 348k in tutto; gli SVG pesano 4-15% del sorgente, non sono la causa). Giovanni le ha guardate: **gli piacciono tutte**. Unica critica: nell'**indice GitHub** non gli è piaciuto il **colore** (grafite con arancio e ottone), mentre lo **stile** gli è piaciuto. Il "troppo teatrale" sembra risolto; il colore dell'indice è un caso isolato, da non trasformare in regola (vedi `gusto.md`, come tenere aggiornato il file).
+
+**Movimento (16/10/2026).** Giovanni ha notato che le quattro pagine avevano lo stesso unico effetto (le card che compaiono scendendo, `.rivela`), che gli piace ma le faceva sembrare copie. Causa: `.rivela` è già pronta in `base.html` e prima in `motion.md`, gli altri effetti richiedono codice. Decisione: **usare tutto il catalogo, `.rivela` compreso, combinandoli.** Fatto: `motion.md` ha ora animazioni legate allo scroll (`animation-timeline`), barra di avanzamento, schede che si impilano, reveal con maschera, sezione fissa, fascia orizzontale, alone sul puntatore, inclinazione, numeri che girano, con esempi; la regola finale chiede almeno due o tre effetti per pagina in sezioni diverse. `SKILL.md` (passo 3 e regola "Animata e viva") fa dichiarare il movimento accanto al concept. Pagine non ancora rigenerate.
+
+**Iterazione 3 (16/10/2026).** Rigenerata solo la pagina indice GitHub (`workspace/iteration-3/eval-indice-github/`, 96.931 token): concept "banco di collaudo", palette blu-nero con verde segnale (niente arancio/ottone), 11 effetti di movimento diversi combinati. Giovanni: **va bene** ("apposto"). Segnalati dall'agente e non visti a schermo: pila di schede su telefono, verde forse troppo vivo (`--color-accento`), username GitHub segnaposto `giovanniardore` da sostituire.
+
 ## Aperti
 
-1. **Adattamento dello stile al soggetto.** Ipotesi da verificare: il concept dovrebbe guidare i dettagli più dell'identità intera, e gli stili già apprezzati dell'archivio dovrebbero pesare di più quando il tema è adatto. Vedere se il metodo (SKILL.md, passi 2-3) va riscritto.
+1. **Adattamento dello stile al soggetto: riscritto, da verificare.** Giovanni ha detto che gli stili erano "troppo teatrali" (altro non sa dire). Il 16/10/2026 ho riscritto `SKILL.md` passi 2-3 (prima umore e funzione, poi identità dal gusto, i dettagli dal soggetto come accento, uno o due), il paragrafo "Come si costruisce un concept" in `direzioni.md` e aggiunto in `gusto.md` il principio "Misura della scena". Non ancora provato con una nuova generazione.
 2. **Nuova generazione di prova** dopo le correzioni (da fare solo quando Giovanni lo permette, per i token).
 3. **Non verificato**:
    - Script nell'ambiente Linux della chat di claude.ai (rete limitata, browser in `/opt/pw-browsers`).

@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madrid in quattro giorni</title>
+<meta name="description" content="Itinerario di quattro giorni a Madrid: centro storico, musei, gita a Toledo e domenica al Rastro, con tappe da spuntare.">
+<meta name="theme-color" content="#bcd6f7">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Madrid in quattro giorni">
+<meta property="og:description" content="Itinerario di quattro giorni a Madrid: centro storico, musei, gita a Toledo e domenica al Rastro, con tappe da spuntare.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34' fill='%23ea580c'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%23fbbf24' stroke-width='10' opacity='.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style type="text/tailwindcss">
+@theme static {
+  --color-cielo: #bcd6f7;
+  --color-fondo: #eef4fb;
+  --color-inchiostro: #0f1f4d;
+  --color-tenue: #44557f;
+  --color-sole: #c2410c;
+  --color-sole-vivo: #ea580c;
+  --color-oro: #fbbf24;
+  --color-cobalto: #1e3a8a;
+  --font-titolo: "Bricolage Grotesque", sans-serif;
+  --font-testo: "Manrope", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --radius-card: 1.5rem;
+  --ease-uscita: cubic-bezier(.22, 1, .36, 1);
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(60% 40% at 90% 30%, rgb(251 191 36 / .22), transparent 70%),
+    radial-gradient(70% 45% at 5% 62%, rgb(234 88 12 / .10), transparent 70%),
+    radial-gradient(60% 40% at 95% 90%, rgb(30 58 138 / .10), transparent 70%),
+    var(--color-fondo);
+  background-attachment: scroll;
+  color: var(--color-inchiostro);
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titolo);
+  text-wrap: balance;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+}
+
+p { text-wrap: pretty; }
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 2px solid var(--color-sole);
+  outline-offset: 3px;
+}
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: end;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 55% at 70% 62%, rgb(251 191 36 / .55), transparent 65%),
+    linear-gradient(180deg, #7fb0ee 0%, var(--color-cielo) 45%, #f6dcb8 82%, var(--color-fondo) 100%);
+}
+
+.sole {
+  position: absolute;
+  right: -4rem;
+  top: 16svh;
+  width: min(78vw, 30rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 34%, #fff3c4 0%, var(--color-oro) 38%, var(--color-sole-vivo) 100%);
+  box-shadow: 0 0 0 1.5rem rgb(251 191 36 / .22), 0 0 0 3.5rem rgb(251 191 36 / .12), 0 40px 120px 20px rgb(234 88 12 / .45);
+  animation: respiro 14s ease-in-out infinite alternate;
+}
+
+@keyframes respiro {
+  from { translate: 0 0; scale: 1; }
+  to { translate: -1.5rem 1.25rem; scale: 1.04; }
+}
+
+.tetti { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(7rem, 22vw, 16rem); }
+
+.vetro {
+  background: linear-gradient(145deg, rgb(255 255 255 / .82), rgb(255 255 255 / .5));
+  border: 1px solid rgb(255 255 255 / .9);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  box-shadow: 0 1px 0 #fff inset, 0 2px 6px rgb(15 31 77 / .07), 0 24px 50px -24px rgb(30 58 138 / .35);
+}
+
+.barra {
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  bottom: calc(.75rem + env(safe-area-inset-bottom));
+  translate: -50% 0;
+  display: flex;
+  gap: .25rem;
+  padding: .3rem;
+  border-radius: 999px;
+  transition: opacity .5s var(--ease-uscita), translate .5s var(--ease-uscita);
+}
+.barra[data-nascosta] { opacity: 0; translate: -50% 150%; pointer-events: none; }
+@media (min-width: 768px) {
+  .barra { bottom: auto; top: 1rem; }
+  .barra[data-nascosta] { translate: -50% -150%; }
+}
+.barra a {
+  min-height: 44px;
+  min-width: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0 .9rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  color: var(--color-tenue);
+  transition: background .3s var(--ease-uscita), color .3s var(--ease-uscita), transform .25s var(--ease-uscita);
+  touch-action: manipulation;
+}
+.barra a:active { transform: scale(.96); }
+.barra a[aria-current="true"] { background: var(--color-inchiostro); color: #fff; }
+.barra .conta { padding: 0 .9rem; display: grid; place-items: center; font-family: var(--font-mono); font-size: .8125rem; color: var(--color-sole); font-weight: 500; }
+
+.giorno-num {
+  font-family: var(--font-titolo);
+  font-weight: 800;
+  line-height: .8;
+  font-size: clamp(7rem, 34vw, 16rem);
+  letter-spacing: -.06em;
+  color: transparent;
+  -webkit-text-stroke: 2px color-mix(in oklch, var(--color-cobalto) 35%, transparent);
+  user-select: none;
+}
+
+.tappa {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr) 44px;
+  gap: .75rem;
+  align-items: start;
+  transition: opacity .4s var(--ease-uscita);
+}
+.tappa .ora { font-family: var(--font-mono); font-size: .9375rem; font-weight: 500; color: var(--color-sole); padding-top: .15rem; }
+.tappa h3 { font-size: 1.375rem; font-weight: 700; }
+.tappa p { margin: .35rem 0 0; color: var(--color-tenue); font-size: 1rem; }
+.chip {
+  display: inline-block;
+  margin-top: .6rem;
+  margin-right: .35rem;
+  padding: .15rem .65rem;
+  border-radius: 999px;
+  border: 1px solid rgb(30 58 138 / .25);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  color: var(--color-cobalto);
+  background: rgb(255 255 255 / .6);
+}
+.spunta {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(30 58 138 / .35);
+  background: rgb(255 255 255 / .7);
+  display: grid; place-items: center;
+  color: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background .3s var(--ease-uscita), transform .25s var(--ease-uscita), box-shadow .3s var(--ease-uscita), border-color .3s;
+}
+.spunta:active { transform: scale(.92); }
+.spunta svg path { stroke-dasharray: 24; stroke-dashoffset: 24; transition: stroke-dashoffset .5s var(--ease-uscita); }
+.tappa[data-fatto] .spunta {
+  background: var(--color-sole);
+  border-color: var(--color-sole);
+  color: #fff;
+  box-shadow: 0 8px 22px -6px rgb(194 65 12 / .6);
+}
+.tappa[data-fatto] .spunta svg path { stroke-dashoffset: 0; }
+.tappa[data-fatto] .corpo { opacity: .55; }
+.tappa[data-fatto] h3 { text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: var(--color-sole); }
+@media (hover: hover) and (pointer: fine) {
+  .spunta:hover { transform: scale(1.08); border-color: var(--color-sole); }
+}
+
+.linea { position: relative; display: grid; gap: 1.75rem; padding-left: 1.1rem; }
+.linea::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .5rem; bottom: .5rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-sole-vivo), var(--color-oro) 50%, var(--color-cobalto));
+  border-radius: 2px;
+  opacity: .55;
+}
+.linea .tappa { position: relative; }
+.linea .tappa::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem; top: .55rem;
+  width: .8rem; height: .8rem;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--color-fondo);
+  border: 2px solid var(--color-sole-vivo);
+  box-shadow: 0 0 0 4px rgb(251 191 36 / .3);
+}
+
+.bento { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+.bento .tappa { padding: 1.25rem; border-radius: var(--radius-card); grid-template-columns: minmax(0, 1fr) 44px; }
+.bento .tappa .ora { grid-column: 1 / -1; }
+.bento .tappa .corpo { grid-column: 1; grid-row: 2; }
+.bento .tappa .spunta { grid-column: 2; grid-row: 2; }
+.bento .grande { background: linear-gradient(150deg, var(--color-inchiostro), var(--color-cobalto)); border-color: rgb(255 255 255 / .15); color: #fff; }
+.bento .grande .ora { color: var(--color-oro); }
+.bento .grande p { color: #c7d4f5; }
+.bento .grande .chip { background: rgb(255 255 255 / .12); color: #fff; border-color: rgb(255 255 255 / .3); }
+.bento .grande .spunta { background: rgb(255 255 255 / .12); border-color: rgb(255 255 255 / .5); }
+.bento .grande .spunta:hover { border-color: var(--color-oro); }
+.bento .grande h3 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+@media (min-width: 768px) {
+  .bento { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-flow: dense; }
+  .bento .grande { grid-column: span 4; grid-row: span 2; align-content: end; }
+  .bento .media { grid-column: span 2; }
+  .bento .larga { grid-column: span 3; }
+}
+
+.compatto { display: grid; }
+.compatto .tappa { padding: 1.1rem 0; border-bottom: 1px dashed rgb(30 58 138 / .25); }
+.compatto .tappa:last-child { border-bottom: 0; }
+
+.nota dt { font-family: var(--font-mono); font-size: .8125rem; color: var(--color-sole); text-transform: uppercase; letter-spacing: .08em; }
+.nota dd { margin: .35rem 0 0; }
+
+.js .rivela {
+  opacity: 0;
+  translate: 0 1.5rem;
+  transition: opacity .8s var(--ease-uscita), translate .8s var(--ease-uscita);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js .rivela.dentro { opacity: 1; translate: 0 0; }
+
+.js .titolo-riga span {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 60%;
+  animation: sale 1s var(--ease-uscita) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 150ms);
+}
+@keyframes sale { to { opacity: 1; translate: 0 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .js .rivela { opacity: 1; translate: 0 0; }
+  .js .titolo-riga span { opacity: 1; translate: 0 0; }
+  .sole { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="barra vetro" aria-label="Giorni del viaggio" data-nascosta id="barra">
+  <a href="#g1">G1</a>
+  <a href="#g2">G2</a>
+  <a href="#g3">G3</a>
+  <a href="#g4">G4</a>
+  <a href="#info">Info</a>
+  <span class="conta" aria-live="polite"><span id="fatte">0</span>/<span id="totale">0</span></span>
+</nav>
+
+<header class="hero" id="alto">
+  <div class="sole" aria-hidden="true"></div>
+  <div class="relative z-10 px-5 pb-[clamp(9rem,28vw,17rem)] pt-24 md:px-12">
+    <p class="rivela mono text-sm text-inchiostro/80" style="--i:0">40.4168° N · 3.7038° O</p>
+    <h1 class="titolo-riga mt-3 text-[clamp(4.5rem,24vw,15rem)] font-extrabold leading-[.85] text-inchiostro"><span style="--i:0">Madrid</span></h1>
+    <p class="rivela mt-6 max-w-md text-[1.1875rem] font-medium text-inchiostro md:max-w-xl md:text-xl" style="--i:3">Quattro giorni tra cena a mezzanotte, quadri al mattino e tramonti dal tempio egizio.</p>
+    <div class="rivela mt-8 flex flex-wrap items-center gap-3" style="--i:4">
+      <a href="#g1" class="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-inchiostro px-6 font-semibold text-white shadow-[0_14px_30px_-10px_rgb(15_31_77/.6)] transition active:scale-[.97] md:hover:-translate-y-0.5">Inizia dal giorno 1
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <span class="mono text-sm text-inchiostro/80"><span id="fatte2">0</span> di <span id="totale2">0</span> tappe fatte</span>
+    </div>
+  </div>
+  <svg class="tetti" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#1e3a8a" fill-opacity=".28" d="M0,220 V120 H70 V90 H120 V130 H190 V70 L215 40 L240 70 V120 H320 V100 H380 V140 H450 V60 H500 V110 H560 V80 L600 30 L640 80 V130 H720 V110 H790 V150 H860 V90 H930 V60 L955 20 L980 60 V110 H1060 V140 H1130 V80 H1200 V120 H1280 V70 H1330 V130 H1440 V220 Z"/>
+    <path fill="#0f1f4d" fill-opacity=".9" d="M0,220 V160 H90 V130 H150 V165 H240 V140 H300 V170 H400 V120 H460 V150 H540 V175 H640 V135 H700 V100 Q735,70 770,100 V135 H830 V170 H940 V140 H1010 V165 H1100 V125 H1170 V160 H1260 V135 H1330 V170 H1440 V220 Z"/>
+  </svg>
+</header>
+
+<main>
+
+<section id="g1" class="relative px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" aria-labelledby="t1">
+  <div class="mx-auto max-w-5xl lg:grid lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
+    <div class="lg:sticky lg:top-24 lg:self-start">
+      <div class="giorno-num rivela" aria-hidden="true">01</div>
+      <p class="rivela mono mt-2 text-sm text-tenue" style="--i:1">Giovedì · il cuore antico</p>
+      <h2 id="t1" class="rivela mt-3 text-[clamp(2.25rem,9vw,3.75rem)] font-bold" style="--i:2">Plazas, cioccolata e il tramonto</h2>
+      <p class="rivela mt-4 text-tenue" style="--i:3">Tutto a piedi dentro un raggio di due chilometri. Si cammina poco e si mangia presto, per arrivare freschi a sera.</p>
+    </div>
+    <ol class="linea mt-12 lg:mt-0">
+      <li class="tappa rivela" data-id="g1-1"><span class="ora">10:00</span><div class="corpo"><h3>Plaza Mayor</h3><p>Il portico, gli affreschi della Casa de la Panadería, il caffè in piedi prima che arrivino i gruppi.</p><span class="chip">a piedi</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Plaza Mayor"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g1-2"><span class="ora">11:30</span><div class="corpo"><h3>Churros da San Ginés</h3><p>Cioccolata densa da cucchiaio e churros appena fritti, nel passaggio dietro la chiesa.</p><span class="chip">colazione bis</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Churros da San Ginés"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g1-3"><span class="ora">13:00</span><div class="corpo"><h3>Palazzo Reale e Jardines Sabatini</h3><p>Facciata e piazza d'Armi senza fila; i giardini terrazzati sul lato nord sono gratuiti e riparati dal sole.</p><span class="chip">gratis fuori</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Palazzo Reale e Jardines Sabatini"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g1-4"><span class="ora">14:30</span><div class="corpo"><h3>Menú del día in Calle Cava Baja</h3><p>Primo, secondo, dolce e vino a prezzo fisso: pranzo lungo, alla spagnola, e poi pausa in hotel.</p><span class="chip">pausa</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Menú del día in Calle Cava Baja"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g1-5"><span class="ora">18:30</span><div class="corpo"><h3>Templo de Debod al tramonto</h3><p>Un tempio egizio del II secolo a.C. trasferito pietra per pietra. Arriva un'ora prima per trovare posto sul muretto.</p><span class="chip">da non perdere</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Templo de Debod al tramonto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g1-6"><span class="ora">21:30</span><div class="corpo"><h3>Tapas a La Latina</h3><p>Si va di locale in locale lungo Cava Baja: una caña, una tapa, poi si cambia.</p><span class="chip">cena</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Tapas a La Latina"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+    </ol>
+  </div>
+</section>
+
+<section id="g2" class="relative bg-gradient-to-b from-transparent via-white/50 to-transparent px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" aria-labelledby="t2">
+  <div class="mx-auto max-w-6xl">
+    <div class="md:flex md:items-end md:justify-between md:gap-10">
+      <div>
+        <p class="rivela mono text-sm text-tenue">Venerdì · il Paseo del Arte</p>
+        <h2 id="t2" class="rivela mt-3 max-w-xl text-[clamp(2.25rem,9vw,4.5rem)] font-bold" style="--i:1">Due musei, un parco, nessuna fretta</h2>
+      </div>
+      <div class="giorno-num rivela mt-2 text-right md:mt-0" aria-hidden="true">02</div>
+    </div>
+    <div class="bento mt-10">
+      <article class="tappa grande vetro rivela" data-id="g2-1"><span class="ora">09:30</span><div class="corpo"><h3>Museo del Prado</h3><p>Velázquez, Goya, Bosch. Parti dalle Meninas e dal Giardino delle delizie, poi segui quello che ti attira: tre ore bastano.</p><span class="chip">prenota online</span><span class="chip">3 ore</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Museo del Prado"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></article>
+      <article class="tappa media vetro rivela" style="--i:1" data-id="g2-2"><span class="ora">13:30</span><div class="corpo"><h3>Pranzo al Barrio de las Letras</h3><p>Vie con i versi di Cervantes incisi sul selciato.</p><span class="chip">menú del día</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Pranzo al Barrio de las Letras"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></article>
+      <article class="tappa media vetro rivela" style="--i:2" data-id="g2-3"><span class="ora">16:00</span><div class="corpo"><h3>Reina Sofía</h3><p>Il Guernica di Picasso, sala 206, al secondo piano.</p><span class="chip">1 ora e mezza</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Reina Sofía"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></article>
+      <article class="tappa larga vetro rivela" data-id="g2-4"><span class="ora">18:30</span><div class="corpo"><h3>Parco del Retiro</h3><p>Il Palacio de Cristal con la sua luce verde e il laghetto, dove si affittano le barche.</p><span class="chip">passeggiata</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Parco del Retiro"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></article>
+      <article class="tappa larga vetro rivela" style="--i:1" data-id="g2-5"><span class="ora">22:00</span><div class="corpo"><h3>Cena a Chueca</h3><p>Prenota: il venerdì sera i tavoli finiscono presto, anche a quest'ora.</p><span class="chip">prenota</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Cena a Chueca"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></article>
+    </div>
+  </div>
+</section>
+
+<section id="g3" class="relative px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" aria-labelledby="t3">
+  <div class="mx-auto max-w-5xl">
+    <div class="flex items-end gap-4 md:gap-8">
+      <div class="giorno-num rivela" aria-hidden="true">03</div>
+      <div class="mb-2 rivela" style="--i:1">
+        <p class="mono text-sm text-tenue">Sabato · fuori porta</p>
+        <p class="mono mt-1 text-sm text-sole">Atocha → Toledo: circa 35 minuti</p>
+      </div>
+    </div>
+    <h2 id="t3" class="rivela mt-6 max-w-2xl text-[clamp(2.25rem,9vw,4.5rem)] font-bold" style="--i:2">Toledo, la città sul meandro</h2>
+    <p class="rivela mt-4 max-w-xl text-tenue" style="--i:3">Il treno veloce parte dalla stazione di Atocha. Compra il biglietto di ritorno subito, con un orario che ti lasci l'ultima luce sulle mura.</p>
+    <div class="vetro mt-10 rounded-[var(--radius-card)] p-5 md:p-8">
+      <ol class="compatto">
+        <li class="tappa rivela" data-id="g3-1"><span class="ora">08:50</span><div class="corpo"><h3>Treno da Atocha</h3><p>Colazione in stazione, tra le palme del giardino tropicale sotto la tettoia.</p></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Treno da Atocha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+        <li class="tappa rivela" data-id="g3-2"><span class="ora">10:30</span><div class="corpo"><h3>Cattedrale e vicoli ebraici</h3><p>Salita a piedi dalla stazione o con la scala mobile; poi senza meta nel reticolo di vicoli.</p><span class="chip">scarpe comode</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Cattedrale e vicoli ebraici"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+        <li class="tappa rivela" data-id="g3-3"><span class="ora">14:00</span><div class="corpo"><h3>Pranzo e marzapane</h3><p>Carcamusas o cervo in umido, e un pezzo di marzapane delle suore per il viaggio.</p></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Pranzo e marzapane"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+        <li class="tappa rivela" data-id="g3-4"><span class="ora">18:15</span><div class="corpo"><h3>Mirador del Valle</h3><p>Il panorama sul Tago con tutta la città alle spalle, a fine giornata prima del treno di ritorno.</p><span class="chip">ultima luce</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Mirador del Valle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="g4" class="relative px-5 py-[clamp(4rem,10vw,8rem)] md:px-12" aria-labelledby="t4">
+  <div class="mx-auto max-w-5xl lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-16">
+    <ol class="linea order-2 mt-12 lg:order-1 lg:mt-0">
+      <li class="tappa rivela" data-id="g4-1"><span class="ora">10:00</span><div class="corpo"><h3>El Rastro</h3><p>Il mercato delle pulci della domenica, da Plaza de Cascorro giù per Ribera de Curtidores. Tieni il portafoglio davanti.</p><span class="chip">solo domenica</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: El Rastro"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g4-2"><span class="ora">13:00</span><div class="corpo"><h3>Vermut a Lavapiés</h3><p>L'aperitivo della domenica: vermut alla spina, patatine e acciughe in qualunque bar con la porta aperta.</p></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Vermut a Lavapiés"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g4-3"><span class="ora">15:30</span><div class="corpo"><h3>Ultimo giro a Malasaña</h3><p>Librerie, negozi vintage e un caffè lungo in Plaza del Dos de Mayo.</p></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Ultimo giro a Malasaña"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+      <li class="tappa rivela" data-id="g4-4"><span class="ora">18:00</span><div class="corpo"><h3>Valigie e metro per Barajas</h3><p>La linea 8 collega l'aeroporto con Nuevos Ministerios: lascia un'ora e mezza di margine.</p><span class="chip">ritorno</span></div><button class="spunta" aria-pressed="false" aria-label="Segna come fatta: Valigie e metro per Barajas"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+    </ol>
+    <div class="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start">
+      <div class="giorno-num rivela" aria-hidden="true">04</div>
+      <p class="rivela mono mt-2 text-sm text-tenue" style="--i:1">Domenica · si chiude il cerchio</p>
+      <h2 id="t4" class="rivela mt-3 text-[clamp(2.25rem,9vw,3.75rem)] font-bold" style="--i:2">Pulci, vermut e arrivederci</h2>
+    </div>
+  </div>
+</section>
+
+<section id="info" class="relative px-5 pb-[clamp(8rem,16vw,12rem)] pt-[clamp(3rem,8vw,6rem)] md:px-12" aria-labelledby="t5">
+  <div class="mx-auto max-w-5xl rounded-[2rem] bg-inchiostro p-6 text-white shadow-[0_40px_80px_-30px_rgb(15_31_77/.7)] md:p-12">
+    <h2 id="t5" class="rivela text-[clamp(2rem,7vw,3.5rem)] font-bold">Da sapere prima di partire</h2>
+    <dl class="nota mt-8 grid gap-8 md:grid-cols-2">
+      <div class="rivela" style="--i:1"><dt>Orari dei pasti</dt><dd class="text-[#c7d4f5]">Pranzo dalle 14, cena dalle 21. Prima di quell'ora molte cucine sono chiuse: i locali aperti sono per turisti.</dd></div>
+      <div class="rivela" style="--i:2"><dt>Muoversi</dt><dd class="text-[#c7d4f5]">Il centro si fa a piedi. Per il resto basta il metro, e conviene una tessera ricaricabile da dieci viaggi.</dd></div>
+      <div class="rivela" style="--i:3"><dt>Il sole</dt><dd class="text-[#c7d4f5]">D'estate le ore centrali sono dure: musei e pausa in hotel dalle 14 alle 17, poi di nuovo in strada.</dd></div>
+      <div class="rivela" style="--i:4"><dt>Prima di prenotare</dt><dd class="text-[#c7d4f5]">Controlla orari e giorni di chiusura di Prado, Reina Sofía e Palazzo Reale: cambiano con le stagioni.</dd></div>
+    </dl>
+  </div>
+  <p class="mono mt-10 text-center text-sm text-tenue">Madrid · 40.4168° N · 3.7038° O · <a href="#alto" class="underline underline-offset-4">torna su</a></p>
+</section>
+
+</main>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var els = document.querySelectorAll('.rivela');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('dentro'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  var KEY = 'madrid-tappe';
+  var fatte = {};
+  try { fatte = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { fatte = {}; }
+  var tappe = document.querySelectorAll('.tappa');
+  function conta() {
+    var n = document.querySelectorAll('.tappa[data-fatto]').length;
+    ['fatte', 'fatte2'].forEach(function (id) { document.getElementById(id).textContent = n; });
+    ['totale', 'totale2'].forEach(function (id) { document.getElementById(id).textContent = tappe.length; });
+  }
+  tappe.forEach(function (t) {
+    var b = t.querySelector('.spunta');
+    function imposta(v) {
+      if (v) t.setAttribute('data-fatto', ''); else t.removeAttribute('data-fatto');
+      b.setAttribute('aria-pressed', v ? 'true' : 'false');
+    }
+    imposta(!!fatte[t.dataset.id]);
+    b.addEventListener('click', function () {
+      var v = !t.hasAttribute('data-fatto');
+      imposta(v);
+      if (v) fatte[t.dataset.id] = 1; else delete fatte[t.dataset.id];
+      try { localStorage.setItem(KEY, JSON.stringify(fatte)); } catch (e) {}
+      conta();
+    });
+  });
+  conta();
+
+  var barra = document.getElementById('barra');
+  var hero = document.getElementById('alto');
+  var links = barra.querySelectorAll('a');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) barra.setAttribute('data-nascosta', ''); else barra.removeAttribute('data-nascosta');
+    }, { threshold: 0.6 }).observe(hero);
+    var sez = new IntersectionObserver(function (en) {
+      en.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['g1', 'g2', 'g3', 'g4', 'info'].forEach(function (id) { sez.observe(document.getElementById(id)); });
+  } else {
+    barra.removeAttribute('data-nascosta');
+  }
+})();
+</script>
+</body>
+</html>

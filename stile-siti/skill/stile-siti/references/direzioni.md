@@ -6,12 +6,12 @@ Le colonne "temi adatti" e i riferimenti nelle tabelle sono esempi del tipo di r
 
 ## Come si costruisce un concept
 
-1. Cerca il mondo reale più vicino al soggetto: un luogo, un materiale, un oggetto, un'epoca, un'ora del giorno.
-2. Tira fuori da lì tre cose concrete: un colore dominante (dall'oggetto, non dall'etichetta di stile), una texture o materiale, un tipo di movimento.
-3. Scegli i font in base all'atmosfera (`tipografia.md`).
-4. Controlla: se togli il testo, si capisce ancora di che mondo è la pagina?
+1. Stabilisci l'umore: chi usa la pagina, quando, con che stato d'animo, e quanta scena può reggere senza stancare.
+2. Scegli identità (palette, materia, tipografia, profondità) in coerenza con quell'umore e con il gusto di Giovanni.
+3. Cerca poi nel mondo reale del soggetto (un luogo, un materiale, un oggetto, un'ora del giorno) uno o due dettagli concreti: un colore d'accento, una texture, un tipo di movimento, un motivo ricorrente.
+4. Controlla la misura: se il soggetto si riconosce al primo colpo d'occhio anche senza leggere, forse hai fatto un costume invece di un accento. Una buona pagina ha un'identità sua e due o tre tocchi che parlano del tema.
 
-"Moderno e pulito" non è un concept. "Banco del mercato al mattino, cassette di legno, luce bassa" lo è.
+"Moderno e pulito" non è un concept. "Calma luminosa, con dettagli da banco del mercato al mattino" lo è. I mondi delle tabelle qui sotto vanno letti come serbatoi di dettagli, non come ambientazioni da riprodurre per intero.
 
 ## Luoghi e ambienti
 

@@ -21,6 +21,9 @@ I voti vengono da cataloghi di varianti della stessa pagina, votati da 1 a 10. D
 - Il magenta piace meno di blu e verde; ambra e viola sul terminale non convincono.
 - Una forma riuscita male può affossare font e palette che piacciono (archi a pillola del retro anni 70, taglio sfalsato del cyber neon).
 
+**Misura della scena**
+- Stili e concept troppo teatrali non convincono: scenografie letterali del tema (sipari, cassettiere, set a tema) risultano eccessive. Meglio un'identità elegante e misurata, con pochi dettagli che parlano del soggetto, che un tema recitato fino in fondo. Il dettaglio riuscito (un'apertura a tenda, un motivo ricorrente) piace; l'intera pagina travestita da oggetto no.
+
 ## Stili connotati: indicazioni di buon senso
 
 Sono tendenze, non regole: giudica tu caso per caso.

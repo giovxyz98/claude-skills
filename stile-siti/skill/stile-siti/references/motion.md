@@ -26,6 +26,15 @@ La pagina deve essere viva, con misura. Pochi movimenti ben scelti, scaglionati,
 | Smooth scroll | Lenis (con ScrollTrigger) | solo dove porta valore; non su pagine brevi |
 | Transizioni di stato | View Transitions, `@starting-style` | 300–500 ms |
 | Micro-interazioni | pulsazioni, onde al click, check che si disegna (`stroke-dashoffset`) | feedback, non decorazione |
+| Animazione legata allo scroll | `animation-timeline: view()` dentro `@supports`, `animation-range` | l'elemento cresce, scorre o ruota mentre lo scorri; senza supporto resta nello stato finale |
+| Barra di avanzamento | `animation-timeline: scroll(root)` su una linea fissa in cima | 2–4 px, colore d'accento |
+| Schede che si impilano | `position: sticky` con `top` crescente per scheda | ogni scheda copre la precedente; ottimo per passi, giorni, funzioni |
+| Reveal con maschera | `overflow: hidden` + `translate` del contenuto, o `clip-path: inset()` | titoli, immagini, riquadri che si aprono da una linea |
+| Sezione fissa con contenuto che scorre | colonna `sticky` + colonna lunga | titolo fermo, dettagli che passano |
+| Fascia orizzontale | `overflow-x: auto` + `scroll-snap-type` | su telefono si trascina col dito |
+| Alone che segue il puntatore | `radial-gradient` con variabili `--x`, `--y` aggiornate da `pointermove` | solo `(hover:hover) and (pointer:fine)` |
+| Inclinazione leggera | `rotate`/`translate` calcolati da `pointermove`, max 4–6° | solo desktop, su pochi riquadri |
+| Numeri che girano | colonne di cifre con `translate` | alternativa ai contatori; stato finale leggibile |
 
 ## Quando serve GSAP
 
@@ -50,6 +59,38 @@ Entrata scaglionata in CSS puro, per animazioni personalizzate diverse da `.rive
 @media (prefers-reduced-motion: reduce) { .entra { animation: none; opacity: 1; translate: 0 0; } }
 ```
 
+Animazione legata allo scroll e barra di avanzamento (CSS puro; fuori da `@supports` l'elemento resta visibile e fermo):
+
+```css
+@supports (animation-timeline: view()) {
+  .cresce { animation: cresce linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+  @keyframes cresce { from { opacity: 0; scale: .92; translate: 0 3rem; } to { opacity: 1; scale: 1; translate: 0 0; } }
+  .avanza { position: fixed; inset: 0 0 auto 0; height: 3px; background: var(--accento); transform-origin: 0 50%; animation: avanza linear both; animation-timeline: scroll(root); }
+  @keyframes avanza { from { scale: 0 1; } to { scale: 1 1; } }
+}
+@media (prefers-reduced-motion: reduce) { .cresce, .avanza { animation: none; } }
+```
+
+Schede che si impilano e reveal con maschera (la classe `.dentro` la mette l'observer di `.rivela`; senza JS tutto resta visibile):
+
+```css
+.pila > * { position: sticky; top: calc(1rem + var(--i) * 1.25rem); }
+.js .maschera { overflow: hidden; }
+.js .maschera > span { display: inline-block; translate: 0 110%; transition: translate .9s cubic-bezier(.22,1,.36,1); }
+.js .maschera.dentro > span { translate: 0 0; }
+.js .apri { clip-path: inset(0 0 100% 0); transition: clip-path 1s cubic-bezier(.22,1,.36,1); }
+.js .apri.dentro { clip-path: inset(0); }
+```
+
+Alone che segue il puntatore:
+
+```js
+if (matchMedia('(hover:hover) and (pointer:fine)').matches) document.querySelectorAll('.faro').forEach(el =>
+  el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.setProperty('--x', e.clientX - r.left + 'px'); el.style.setProperty('--y', e.clientY - r.top + 'px'); }));
+```
+
+con `.faro { background: radial-gradient(18rem circle at var(--x, 50%) var(--y, 0%), rgb(255 255 255 / .12), transparent 60%); }`.
+
 Reveal del testo con GSAP:
 
 ```js
@@ -72,4 +113,5 @@ gsap.ticker.lagSmoothing(0);
 - Mai un contenuto essenziale visibile solo dopo un'animazione che può non partire: lo stato finale è il default.
 - Con `prefers-reduced-motion: reduce` disattiva movimenti grandi, parallax, loop e smooth scroll; lascia al più cambi di colore e dissolvenze.
 - Sul telefono meno elementi animati insieme.
-- Non animare tutto allo stesso modo: stesso fade-in su ogni sezione è un segno di pagina generica. Scegli due o tre movimenti che esprimono il concept (onde lente per il mare, lampeggio per il neon, deriva per la nebbia).
+- Usa il catalogo per intero, non solo `.rivela`. `.rivela` resta uno strumento valido (le card che compaiono scendendo piacciono a Giovanni), ma va **combinato** con altri: ogni pagina deve avere almeno due o tre effetti legati allo scroll o al puntatore scelti per il concept, in sezioni diverse (schede che si impilano per i passi, titolo con maschera, barra di avanzamento, alone sui riquadri, e così via), oltre agli sfondi vivi che esprimono il tema (onde lente per il mare, lampeggio per il neon, deriva per la nebbia).
+- Se due pagine fatte di seguito hanno gli stessi effetti, cambia combinazione: stessa entrata su ogni sezione è un segno di pagina generica.

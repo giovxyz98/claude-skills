@@ -23,6 +23,8 @@ Questi documenti servono a **costruire** la skill. Non vanno inseriti nella skil
 | `09-stato-e-prossimi-passi.md` | **Da leggere per riprendere il lavoro**: stato, risultati dei test, problemi aperti, cosa non è stato verificato |
 | `skill/stile-siti/` | La skill in costruzione (SKILL.md, references, scripts, assets, evals) |
 | `workspace/iteration-1/` | Pagine di prova generate con nuova e vecchia skill, più `revisione.html` per confrontarle |
+| `workspace/iteration-2/` | Le stesse quattro pagine rigenerate dopo la riscrittura dei passi 2-3 (umore prima, soggetto come accento) |
+| `workspace/iteration-3/` | Indice GitHub rigenerato con nuovo colore e catalogo di movimento esteso |
 | `materiale/skill-attuale-SKILL.md` | Il SKILL.md attualmente in uso |
 | `materiale/frontend-statico-estratto.md` | Regole di una versione precedente, recuperate da una vecchia chat |
 
