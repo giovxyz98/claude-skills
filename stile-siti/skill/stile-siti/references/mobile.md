@@ -52,4 +52,4 @@ La maggior parte delle pagine di Giovanni si usa dal telefono. Si progetta per 3
 
 ## Controlli prima di consegnare
 
-La verifica fa screenshot a 360, 390, 430, tablet e desktop e segnala: overflow orizzontale, testo fuori dai contenitori, elementi sovrapposti, aree toccabili troppo piccole. Guarda gli screenshot del telefono per primi.
+La verifica fa screenshot a 360, 390, 430, tablet e desktop e segnala: overflow orizzontale, testo fuori dai contenitori, elementi sovrapposti, aree toccabili troppo piccole. Guarda gli screenshot del telefono per primi e poi il desktop, nient'altro (vedi il passo 6 di `SKILL.md`).
